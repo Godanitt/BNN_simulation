@@ -1,0 +1,3 @@
+reactants_canon,products_canon,kept,rate,rate_class,fname,label,Q_MeV,weak,derived_from_inverse
+p + p,d,True,p + p + e⁻ ⟶ H2 + 𝜈,ReacLibRate,p_p_to_d_reaclib_electron_capture,reaclib,1.44206,True,False
+p + p,d,False,p + p ⟶ H2 + e⁺ + 𝜈,ReacLibRate,p_p_to_d_reaclib_beta_pos,reaclib,1.44206,True,False

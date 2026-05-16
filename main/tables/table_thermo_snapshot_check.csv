@@ -1,0 +1,4 @@
+label,t_s,T9_assignment,T9_model,rel_error_T9,rho_assignment_g_cm3,rho_model_g_cm3,rel_error_rho,eta10_effective,T9_radiation_reference,rho_eta_reference_g_cm3
+50 s,50,1.7,1.7,0.0,2.00e-04,2.00e-04,0.0,12.09,2.0,0.0001009238123138
+200 s,200,1,1,0.0,2.00e-05,2.00e-05,0.0,5.939,1.0,2.054219668509528e-05
+1000 s,1000,0.4,0.4,0.0,2.00e-06,2.00e-06,0.0,9.28,0.4472135954999579,1.3147005878460978e-06

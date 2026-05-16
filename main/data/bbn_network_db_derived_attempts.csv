@@ -1,0 +1,78 @@
+source_rate,derived_rate,derived_ok,message,source_reactants,source_products,source_Q_MeV
+n + p --> d <reaclib_an06>,H2 ⟶ n + p,True,created by Library.derived_backward(use_pf=False),,,
+d + n --> t <reaclib_nk06>,H3 ⟶ n + H2,True,created by Library.derived_backward(use_pf=False),,,
+d + p --> He3 <reaclib_de04>,He3 ⟶ p + H2,True,created by Library.derived_backward(use_pf=False),,,
+d + d --> He4 <reaclib_nacr>,He4 ⟶ H2 + H2,True,created by Library.derived_backward(use_pf=False),,,
+d + He4 --> Li6 <reaclib_tu19>,Li6 ⟶ He4 + H2,True,created by Library.derived_backward(use_pf=False),,,
+t + p --> He4 <reaclib_cf88>,He4 ⟶ p + H3,True,created by Library.derived_backward(use_pf=False),,,
+t + He4 --> Li7 <reaclib_de04>,Li7 ⟶ He4 + H3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + n --> He4 <reaclib_ka02>,He4 ⟶ n + He3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + He4 --> Be7 <reaclib_cd08>,Be7 ⟶ He4 + He3,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + n --> Li7 <reaclib_jz10>,Li7 ⟶ n + Li6,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + p --> Be7 <reaclib_nacr>,Be7 ⟶ p + Li6,True,created by Library.derived_backward(use_pf=False),,,
+d + d --> n + He3 <reaclib_gi17>,He3 + n ⟶ H2 + H2,True,created by Library.derived_backward(use_pf=False),,,
+d + d --> p + t <reaclib_go17>,H3 + p ⟶ H2 + H2,True,created by Library.derived_backward(use_pf=False),,,
+t + d --> n + He4 <reaclib_de04>,n + He4 ⟶ H2 + H3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + n --> p + t <reaclib_de04>,H3 + p ⟶ n + He3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + d --> p + He4 <reaclib_de04>,p + He4 ⟶ H2 + He3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + t --> d + He4 <reaclib_cf88>,H2 + He4 ⟶ H3 + He3,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + n --> He4 + t <reaclib_cf88>,H3 + He4 ⟶ n + Li6,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + p --> He4 + He3 <reaclib_pt05>,He3 + He4 ⟶ p + Li6,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + d --> n + Be7 <reaclib_mafo>,Be7 + n ⟶ H2 + Li6,True,created by Library.derived_backward(use_pf=False),,,
+Li6 + d --> p + Li7 <reaclib_mafo>,Li7 + p ⟶ H2 + Li6,True,created by Library.derived_backward(use_pf=False),,,
+Li7 + p --> He4 + He4 <reaclib_de04>,He4 + He4 ⟶ p + Li7,True,created by Library.derived_backward(use_pf=False),,,
+Be7 + n --> p + Li7 <reaclib_db18>,Li7 + p ⟶ n + Be7,True,created by Library.derived_backward(use_pf=False),,,
+Be7 + n --> He4 + He4 <reaclib_wag>,He4 + He4 ⟶ n + Be7,True,created by Library.derived_backward(use_pf=False),,,
+t + t --> n + n + He4 <reaclib_cf88>,n + n + He4 ⟶ H3 + H3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + t --> n + p + He4 <reaclib_cf88>,n + p + He4 ⟶ H3 + He3,True,created by Library.derived_backward(use_pf=False),,,
+He3 + He3 --> p + p + He4 <reaclib_nacr>,p + p + He4 ⟶ He3 + He3,True,created by Library.derived_backward(use_pf=False),,,
+Li7 + d --> n + He4 + He4 <reaclib_cf88>,n + He4 + He4 ⟶ H2 + Li7,True,created by Library.derived_backward(use_pf=False),,,
+Be7 + d --> p + He4 + He4 <reaclib_cf88>,p + He4 + He4 ⟶ H2 + Be7,True,created by Library.derived_backward(use_pf=False),,,
+Li7 + t --> n + n + He4 + He4 <reaclib_mafo>,n + n + He4 + He4 ⟶ H3 + Li7,True,created by Library.derived_backward(use_pf=False),,,
+Li7 + He3 --> n + p + He4 + He4 <reaclib_mafo>,n + p + He4 + He4 ⟶ He3 + Li7,True,created by Library.derived_backward(use_pf=False),,,
+Be7 + t --> n + p + He4 + He4 <reaclib_mafo>,n + p + He4 + He4 ⟶ H3 + Be7,True,created by Library.derived_backward(use_pf=False),,,
+Be7 + He3 --> p + p + He4 + He4 <reaclib_mafo>,p + p + He4 + He4 ⟶ He3 + Be7,True,created by Library.derived_backward(use_pf=False),,,
+n + p + He4 --> Li6 <reaclib_cf88>,Li6 ⟶ n + p + He4,True,created by Library.derived_backward(use_pf=False),,,
+n + p + p --> p + d <reaclib_cf88>,H2 + p ⟶ n + p + p,True,created by Library.derived_backward(use_pf=False),,,
+n ⟶ p + e⁻ + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,n,p,0.7823
+H3 ⟶ He3 + e⁻ + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,t,He3,0.0186
+He3 + e⁻ ⟶ H3 + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,He3,t,-0.019
+Be7 + e⁻ ⟶ Li7 + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,Be7,Li7,0.863
+n + p ⟶ H2 + 𝛾,H2 ⟶ n + p,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + p,d,2.22457
+p + p ⟶ H2 + e⁺ + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,p + p,d,1.44206
+p + p + e⁻ ⟶ H2 + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,p + p,d,1.44206
+H2 + n ⟶ H3 + 𝛾,H3 ⟶ n + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + d,t,6.25737
+H2 + p ⟶ He3 + 𝛾,He3 ⟶ p + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",p + d,He3,5.493
+H2 + H2 ⟶ He4 + 𝛾,He4 ⟶ H2 + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + d,He4,23.847
+H2 + He4 ⟶ Li6 + 𝛾,Li6 ⟶ He4 + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He4 + d,Li6,1.47375
+H3 + p ⟶ He4 + 𝛾,He4 ⟶ p + H3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",p + t,He4,19.814
+H3 + He4 ⟶ Li7 + 𝛾,Li7 ⟶ He4 + H3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He4 + t,Li7,2.467
+He3 + n ⟶ He4 + 𝛾,He4 ⟶ n + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + He3,He4,20.5774
+He3 + p ⟶ He4 + e⁺ + 𝜈,,False,ValueError: The source rate is a ReacLib derived from inverse rate or weak or tabular,p + He3,He4,19.796
+He3 + He4 ⟶ Be7 + 𝛾,Be7 ⟶ He4 + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He4 + He3,Be7,1.5861
+Li6 + n ⟶ Li7 + 𝛾,Li7 ⟶ n + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + Li6,Li7,7.25037
+Li6 + p ⟶ Be7 + 𝛾,Be7 ⟶ p + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",p + Li6,Be7,5.606
+H2 + H2 ⟶ n + He3,He3 + n ⟶ H2 + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + d,n + He3,3.2689
+H2 + H2 ⟶ p + H3,H3 + p ⟶ H2 + H2,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + d,p + t,4.03266
+H3 + H2 ⟶ n + He4,n + He4 ⟶ H2 + H3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + t,n + He4,17.589
+He3 + n ⟶ p + H3,H3 + p ⟶ n + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + He3,p + t,0.7638
+He3 + H2 ⟶ p + He4,p + He4 ⟶ H2 + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + He3,p + He4,18.353
+He3 + H3 ⟶ H2 + He4,H2 + He4 ⟶ H3 + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",t + He3,d + He4,14.32
+Li6 + n ⟶ He4 + H3,H3 + He4 ⟶ n + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + Li6,He4 + t,4.782
+Li6 + p ⟶ He4 + He3,He3 + He4 ⟶ p + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",p + Li6,He4 + He3,4.01917
+Li6 + H2 ⟶ n + Be7,Be7 + n ⟶ H2 + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + Li6,n + Be7,3.38163
+Li6 + H2 ⟶ p + Li7,Li7 + p ⟶ H2 + Li6,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + Li6,p + Li7,5.02597
+Li7 + p ⟶ He4 + He4,He4 + He4 ⟶ p + Li7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",p + Li7,He4 + He4,17.347
+Be7 + n ⟶ p + Li7,Li7 + p ⟶ n + Be7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + Be7,p + Li7,1.644
+Be7 + n ⟶ He4 + He4,He4 + He4 ⟶ n + Be7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + Be7,He4 + He4,18.9905
+H3 + H3 ⟶ n + n + He4,n + n + He4 ⟶ H3 + H3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",t + t,n + n + He4,11.332
+He3 + H3 ⟶ n + p + He4,n + p + He4 ⟶ H3 + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",t + He3,n + p + He4,12.096
+He3 + He3 ⟶ p + p + He4,p + p + He4 ⟶ He3 + He3,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He3 + He3,p + p + He4,12.859
+Li7 + H2 ⟶ n + He4 + He4,n + He4 + He4 ⟶ H2 + Li7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + Li7,n + He4 + He4,15.121
+Be7 + H2 ⟶ p + He4 + He4,p + He4 + He4 ⟶ H2 + Be7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",d + Be7,p + He4 + He4,16.766
+Li7 + H3 ⟶ n + n + He4 + He4,n + n + He4 + He4 ⟶ H3 + Li7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",t + Li7,n + n + He4 + He4,8.86442
+Li7 + He3 ⟶ n + p + He4 + He4,n + p + He4 + He4 ⟶ He3 + Li7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He3 + Li7,n + p + He4 + He4,9.62776
+Be7 + H3 ⟶ n + p + He4 + He4,n + p + He4 + He4 ⟶ H3 + Be7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",t + Be7,n + p + He4 + He4,10.5088
+Be7 + He3 ⟶ p + p + He4 + He4,p + p + He4 + He4 ⟶ He3 + Be7,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",He3 + Be7,p + p + He4 + He4,11.2721
+n + p + He4 ⟶ Li6 + 𝛾,Li6 ⟶ n + p + He4,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + p + He4,Li6,3.7
+n + p + p ⟶ p + H2,H2 + p ⟶ n + p + p,True,"created by explicit DerivedRate(source_rate=..., use_pf=False)",n + p + p,p + d,2.225

@@ -1,0 +1,9 @@
+status,message,n_rates,reverse_channels_found,reverse_channels_total,traceback
+integration_failed,"Network was built, but integration failed: RuntimeError: Required step size is less than spacing between numbers.",76,7,7,"Traceback (most recent call last):
+  File ""/home/daniel/GitHub/BNN_simulation/main/06_make_detailed_balance_network.py"", line 582, in main
+    df_db = integrate_db_network()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/daniel/GitHub/BNN_simulation/main/06_make_detailed_balance_network.py"", line 458, in integrate_db_network
+    raise RuntimeError(sol.message)
+RuntimeError: Required step size is less than spacing between numbers.
+"

@@ -1,0 +1,77 @@
+index,rate,reactants,products,reactants_canon,products_canon,Q_MeV,fname,label,weak,derived_from_inverse,rate_class
+0,n ⟶ p + e⁻ + 𝜈,n,p,n,p,0.7823,n_to_p_reaclib,reaclib,True,False,ReacLibRate
+1,H3 ⟶ He3 + e⁻ + 𝜈,t,He3,t,he3,0.0186,t_to_He3_reaclib,reaclib,True,False,ReacLibRate
+2,He3 + e⁻ ⟶ H3 + 𝜈,He3,t,he3,t,-0.019,He3_to_t_reaclib,reaclib,True,False,ReacLibRate
+3,Be7 + e⁻ ⟶ Li7 + 𝜈,Be7,Li7,be7,li7,0.863,Be7_to_Li7_reaclib,reaclib,True,False,ReacLibRate
+4,n + p ⟶ H2 + 𝛾,n + p,d,n + p,d,2.22457,n_p_to_d_reaclib,reaclib,False,False,ReacLibRate
+5,p + p + e⁻ ⟶ H2 + 𝜈,p + p,d,p + p,d,1.44206,p_p_to_d_reaclib_electron_capture,reaclib,True,False,ReacLibRate
+6,H2 + n ⟶ H3 + 𝛾,n + d,t,d + n,t,6.25737,n_d_to_t_reaclib,reaclib,False,False,ReacLibRate
+7,H2 + p ⟶ He3 + 𝛾,p + d,He3,d + p,he3,5.493,p_d_to_He3_reaclib,reaclib,False,False,ReacLibRate
+8,H2 + H2 ⟶ He4 + 𝛾,d + d,He4,d + d,he4,23.847,d_d_to_He4_reaclib,reaclib,False,False,ReacLibRate
+9,H2 + He4 ⟶ Li6 + 𝛾,He4 + d,Li6,d + he4,li6,1.47375,He4_d_to_Li6_reaclib,reaclib,False,False,ReacLibRate
+10,H3 + p ⟶ He4 + 𝛾,p + t,He4,p + t,he4,19.814,p_t_to_He4_reaclib,reaclib,False,False,ReacLibRate
+11,H3 + He4 ⟶ Li7 + 𝛾,He4 + t,Li7,he4 + t,li7,2.467,He4_t_to_Li7_reaclib,reaclib,False,False,ReacLibRate
+12,He3 + n ⟶ He4 + 𝛾,n + He3,He4,he3 + n,he4,20.5774,n_He3_to_He4_reaclib,reaclib,False,False,ReacLibRate
+13,He3 + p ⟶ He4 + e⁺ + 𝜈,p + He3,He4,he3 + p,he4,19.796,p_He3_to_He4_reaclib,reaclib,True,False,ReacLibRate
+14,He3 + He4 ⟶ Be7 + 𝛾,He4 + He3,Be7,he3 + he4,be7,1.5861,He4_He3_to_Be7_reaclib,reaclib,False,False,ReacLibRate
+15,Li6 + n ⟶ Li7 + 𝛾,n + Li6,Li7,li6 + n,li7,7.25037,n_Li6_to_Li7_reaclib,reaclib,False,False,ReacLibRate
+16,Li6 + p ⟶ Be7 + 𝛾,p + Li6,Be7,li6 + p,be7,5.606,p_Li6_to_Be7_reaclib,reaclib,False,False,ReacLibRate
+17,H2 + H2 ⟶ n + He3,d + d,n + He3,d + d,he3 + n,3.2689,d_d_to_n_He3_reaclib,reaclib,False,False,ReacLibRate
+18,H2 + H2 ⟶ p + H3,d + d,p + t,d + d,p + t,4.03266,d_d_to_p_t_reaclib,reaclib,False,False,ReacLibRate
+19,H3 + H2 ⟶ n + He4,d + t,n + He4,d + t,he4 + n,17.589,d_t_to_n_He4_reaclib,reaclib,False,False,ReacLibRate
+20,He3 + n ⟶ p + H3,n + He3,p + t,he3 + n,p + t,0.7638,n_He3_to_p_t_reaclib,reaclib,False,False,ReacLibRate
+21,He3 + H2 ⟶ p + He4,d + He3,p + He4,d + he3,he4 + p,18.353,d_He3_to_p_He4_reaclib,reaclib,False,False,ReacLibRate
+22,He3 + H3 ⟶ H2 + He4,t + He3,d + He4,he3 + t,d + he4,14.32,t_He3_to_d_He4_reaclib,reaclib,False,False,ReacLibRate
+23,Li6 + n ⟶ He4 + H3,n + Li6,He4 + t,li6 + n,he4 + t,4.782,n_Li6_to_He4_t_reaclib,reaclib,False,False,ReacLibRate
+24,Li6 + p ⟶ He4 + He3,p + Li6,He4 + He3,li6 + p,he3 + he4,4.01917,p_Li6_to_He4_He3_reaclib,reaclib,False,False,ReacLibRate
+25,Li6 + H2 ⟶ n + Be7,d + Li6,n + Be7,d + li6,be7 + n,3.38163,d_Li6_to_n_Be7_reaclib,reaclib,False,False,ReacLibRate
+26,Li6 + H2 ⟶ p + Li7,d + Li6,p + Li7,d + li6,li7 + p,5.02597,d_Li6_to_p_Li7_reaclib,reaclib,False,False,ReacLibRate
+27,Li7 + p ⟶ He4 + He4,p + Li7,He4 + He4,li7 + p,he4 + he4,17.347,p_Li7_to_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+28,Be7 + n ⟶ p + Li7,n + Be7,p + Li7,be7 + n,li7 + p,1.644,n_Be7_to_p_Li7_reaclib,reaclib,False,False,ReacLibRate
+29,Be7 + n ⟶ He4 + He4,n + Be7,He4 + He4,be7 + n,he4 + he4,18.9905,n_Be7_to_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+30,H3 + H3 ⟶ n + n + He4,t + t,n + n + He4,t + t,he4 + n + n,11.332,t_t_to_n_n_He4_reaclib,reaclib,False,False,ReacLibRate
+31,He3 + H3 ⟶ n + p + He4,t + He3,n + p + He4,he3 + t,he4 + n + p,12.096,t_He3_to_n_p_He4_reaclib,reaclib,False,False,ReacLibRate
+32,He3 + He3 ⟶ p + p + He4,He3 + He3,p + p + He4,he3 + he3,he4 + p + p,12.859,He3_He3_to_p_p_He4_reaclib,reaclib,False,False,ReacLibRate
+33,Li7 + H2 ⟶ n + He4 + He4,d + Li7,n + He4 + He4,d + li7,he4 + he4 + n,15.121,d_Li7_to_n_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+34,Be7 + H2 ⟶ p + He4 + He4,d + Be7,p + He4 + He4,be7 + d,he4 + he4 + p,16.766,d_Be7_to_p_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+35,Li7 + H3 ⟶ n + n + He4 + He4,t + Li7,n + n + He4 + He4,li7 + t,he4 + he4 + n + n,8.86442,t_Li7_to_n_n_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+36,Li7 + He3 ⟶ n + p + He4 + He4,He3 + Li7,n + p + He4 + He4,he3 + li7,he4 + he4 + n + p,9.62776,He3_Li7_to_n_p_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+37,Be7 + H3 ⟶ n + p + He4 + He4,t + Be7,n + p + He4 + He4,be7 + t,he4 + he4 + n + p,10.5088,t_Be7_to_n_p_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+38,Be7 + He3 ⟶ p + p + He4 + He4,He3 + Be7,p + p + He4 + He4,be7 + he3,he4 + he4 + p + p,11.2721,He3_Be7_to_p_p_He4_He4_reaclib,reaclib,False,False,ReacLibRate
+39,n + p + He4 ⟶ Li6 + 𝛾,n + p + He4,Li6,he4 + n + p,li6,3.7,n_p_He4_to_Li6_reaclib,reaclib,False,False,ReacLibRate
+40,n + p + p ⟶ p + H2,n + p + p,p + d,n + p + p,d + p,2.225,n_p_p_to_p_d_reaclib,reaclib,False,False,ReacLibRate
+41,H2 ⟶ n + p,d,n + p,d,n + p,-2.224566269000013,d_to_n_p_derived,derived,False,True,DerivedRate
+42,H3 ⟶ n + H2,t,n + d,t,d + n,-6.2572300949998025,t_to_n_d_derived,derived,False,True,DerivedRate
+43,He3 ⟶ p + H2,He3,p + d,he3,d + p,-5.493475079000131,He3_to_p_d_derived,derived,False,True,DerivedRate
+44,He4 ⟶ H2 + H2,He4,d + d,he4,d + d,-23.846529919999988,He4_to_d_d_derived,derived,False,True,DerivedRate
+45,Li6 ⟶ He4 + H2,Li6,He4 + d,li6,d + he4,-1.4737583649997308,Li6_to_He4_d_derived,derived,False,True,DerivedRate
+46,He4 ⟶ p + H3,He4,p + t,he4,p + t,-19.813866093999785,He4_to_p_t_derived,derived,False,True,DerivedRate
+47,Li7 ⟶ He4 + H3,Li7,He4 + t,li7,he4 + t,-2.467621770000232,Li7_to_He4_t_derived,derived,False,True,DerivedRate
+48,He4 ⟶ n + He3,He4,n + He3,he4,he3 + n,-20.57762110999987,He4_to_n_He3_derived,derived,False,True,DerivedRate
+49,Be7 ⟶ He4 + He3,Be7,He4 + He3,be7,he3 + he4,-1.587134750000506,Be7_to_He4_He3_derived,derived,False,True,DerivedRate
+50,Li7 ⟶ n + Li6,Li7,n + Li6,li7,li6 + n,-7.251093500000303,Li7_to_n_Li6_derived,derived,False,True,DerivedRate
+51,Be7 ⟶ p + Li6,Be7,p + Li6,be7,li6 + p,-5.606851464000079,Be7_to_p_Li6_derived,derived,False,True,DerivedRate
+52,He3 + n ⟶ H2 + H2,n + He3,d + d,he3 + n,d + d,-3.2689088099997043,n_He3_to_d_d_derived,derived,False,True,DerivedRate
+53,H3 + p ⟶ H2 + H2,p + t,d + d,p + t,d + d,-4.032663826000203,p_t_to_d_d_derived,derived,False,True,DerivedRate
+54,n + He4 ⟶ H2 + H3,n + He4,d + t,he4 + n,d + t,-17.589299825000186,n_He4_to_d_t_derived,derived,False,True,DerivedRate
+55,H3 + p ⟶ n + He3,p + t,n + He3,p + t,he3 + n,-0.7637550160000848,p_t_to_n_He3_derived,derived,False,True,DerivedRate
+56,p + He4 ⟶ H2 + He3,p + He4,d + He3,he4 + p,d + he3,-18.353054841000272,p_He4_to_d_He3_derived,derived,False,True,DerivedRate
+57,H2 + He4 ⟶ H3 + He3,d + He4,t + He3,d + he4,he3 + t,-14.320391014999656,d_He4_to_t_He3_derived,derived,False,True,DerivedRate
+58,H3 + He4 ⟶ n + Li6,He4 + t,n + Li6,he4 + t,li6 + n,-4.7834717300000715,He4_t_to_n_Li6_derived,derived,False,True,DerivedRate
+59,He3 + He4 ⟶ p + Li6,He4 + He3,p + Li6,he3 + he4,li6 + p,-4.019716713999573,He4_He3_to_p_Li6_derived,derived,False,True,DerivedRate
+60,Be7 + n ⟶ H2 + Li6,n + Be7,d + Li6,be7 + n,d + li6,-3.382285195000066,n_Be7_to_d_Li6_derived,derived,False,True,DerivedRate
+61,Li7 + p ⟶ H2 + Li6,p + Li7,d + Li6,li7 + p,d + li6,-5.026527231000291,p_Li7_to_d_Li6_derived,derived,False,True,DerivedRate
+62,He4 + He4 ⟶ p + Li7,He4 + He4,p + Li7,he4 + he4,li7 + p,-17.346244323999763,He4_He4_to_p_Li7_derived,derived,False,True,DerivedRate
+63,Li7 + p ⟶ n + Be7,p + Li7,n + Be7,li7 + p,be7 + n,-1.6442420360002243,p_Li7_to_n_Be7_derived,derived,False,True,DerivedRate
+64,He4 + He4 ⟶ n + Be7,He4 + He4,n + Be7,he4 + he4,be7 + n,-18.990486359999778,He4_He4_to_n_Be7_derived,derived,False,True,DerivedRate
+65,n + n + He4 ⟶ H3 + H3,n + n + He4,t + t,he4 + n + n,t + t,-11.332069729999557,n_n_He4_to_t_t_derived,derived,False,True,DerivedRate
+66,n + p + He4 ⟶ H3 + He3,n + p + He4,t + He3,he4 + n + p,he3 + t,-12.095824746000469,n_p_He4_to_t_He3_derived,derived,False,True,DerivedRate
+67,p + p + He4 ⟶ He3 + He3,p + p + He4,He3 + He3,he4 + p + p,he3 + he3,-12.859579761999727,p_p_He4_to_He3_He3_derived,derived,False,True,DerivedRate
+68,n + He4 + He4 ⟶ H2 + Li7,n + He4 + He4,d + Li7,he4 + he4 + n,d + li7,-15.121678054999128,n_He4_He4_to_d_Li7_derived,derived,False,True,DerivedRate
+69,p + He4 + He4 ⟶ H2 + Be7,p + He4 + He4,d + Be7,he4 + he4 + p,be7 + d,-16.765920090999767,p_He4_He4_to_d_Be7_derived,derived,False,True,DerivedRate
+70,n + n + He4 + He4 ⟶ H3 + Li7,n + n + He4 + He4,t + Li7,he4 + he4 + n + n,li7 + t,-8.864447960000152,n_n_He4_He4_to_t_Li7_derived,derived,False,True,DerivedRate
+71,n + p + He4 + He4 ⟶ He3 + Li7,n + p + He4 + He4,He3 + Li7,he4 + he4 + n + p,he3 + li7,-9.628202975998997,n_p_He4_He4_to_He3_Li7_derived,derived,False,True,DerivedRate
+72,n + p + He4 + He4 ⟶ H3 + Be7,n + p + He4 + He4,t + Be7,he4 + he4 + n + p,be7 + t,-10.50868999599955,n_p_He4_He4_to_t_Be7_derived,derived,False,True,DerivedRate
+73,p + p + He4 + He4 ⟶ He3 + Be7,p + p + He4 + He4,He3 + Be7,he4 + he4 + p + p,be7 + he3,-11.272445012000048,p_p_He4_He4_to_He3_Be7_derived,derived,False,True,DerivedRate
+74,Li6 ⟶ n + p + He4,Li6,n + p + He4,li6,he4 + n + p,-3.69832463399933,Li6_to_n_p_He4_derived,derived,False,True,DerivedRate
+75,H2 + p ⟶ n + p + p,p + d,n + p + p,d + p,n + p + p,-2.2245662689995993,p_d_to_n_p_p_derived,derived,False,True,DerivedRate
