@@ -1,0 +1,7 @@
+observable,value,sigma,low,cent,high,source
+Yp_He4,0.25250,0.00033,0.25210,0.25250,0.25250,AlterBBN stand_cosmo.x 5
+D/H,2.674e-05,5.462e-07,2.766e-05,2.674e-05,2.558e-05,AlterBBN stand_cosmo.x 5
+He3/H,1.067e-05,1.730e-07,1.056e-05,1.067e-05,1.068e-05,AlterBBN stand_cosmo.x 5
+Li7/H,4.972e-10,3.616e-11,4.582e-10,4.972e-10,5.497e-10,AlterBBN stand_cosmo.x 5
+Li6/H,1.211e-14,1.219e-14,1.903e-15,1.211e-14,3.843e-14,AlterBBN stand_cosmo.x 5
+Be7/H,4.652e-10,3.548e-11,4.268e-10,4.652e-10,5.179e-10,AlterBBN stand_cosmo.x 5

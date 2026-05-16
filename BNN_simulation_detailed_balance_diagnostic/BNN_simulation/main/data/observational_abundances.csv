@@ -1,0 +1,5 @@
+observable,quantity,value,sigma,model_column,source_key,note
+D/H,number_ratio,2.527e-05,3e-07,D/H,Cooke2018,Primordial deuterium from metal-poor quasar absorption systems.
+Yp_He4,mass_fraction,0.2462,0.0022,X_He4,Aver2021,Primordial helium mass fraction from metal-poor HII regions.
+He3/H,number_ratio,1.1e-05,2e-06,He3/H,Steigman2010,"Poor primordial determination; Galactic HII values, mostly a consistency check."
+Li7/H,number_ratio,1.6e-10,3e-11,Li7_plus_Be7_over_H,FieldsLithiumReview,Observed Spite plateau scale; compare to predicted Li7+Be7.

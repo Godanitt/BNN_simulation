@@ -1,0 +1,8 @@
+channel,reactants_expected,products_expected,found,matched_rate,Q_MeV,rate_class,derived_from_inverse,note,diagnostic
+d_to_n_p,d,n + p,False,,,,,"photodisintegration counterpart of p(n,gamma)d",pynucastro is not importable in this environment: No module named 'pynucastro'
+he3_to_p_d,he3,p + d,False,,,,,"reverse of d(p,gamma)he3",pynucastro is not importable in this environment: No module named 'pynucastro'
+t_to_n_d,t,n + d,False,,,,,"reverse of d(n,gamma)t",pynucastro is not importable in this environment: No module named 'pynucastro'
+he4_to_p_t,he4,p + t,False,,,,,"reverse of t(p,gamma)he4",pynucastro is not importable in this environment: No module named 'pynucastro'
+he4_to_n_he3,he4,n + he3,False,,,,,"reverse of he3(n,gamma)he4",pynucastro is not importable in this environment: No module named 'pynucastro'
+be7_to_he4_he3,be7,he4 + he3,False,,,,,"reverse of he3(alpha,gamma)be7",pynucastro is not importable in this environment: No module named 'pynucastro'
+li7_to_he4_t,li7,he4 + t,False,,,,,"reverse of t(alpha,gamma)li7",pynucastro is not importable in this environment: No module named 'pynucastro'

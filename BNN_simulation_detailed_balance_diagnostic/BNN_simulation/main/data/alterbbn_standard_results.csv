@@ -1,0 +1,7 @@
+observable,display,alterbbn_column,low,cent,high,value,sigma,source,notes
+Yp_He4,$Y_p$,Yp,0.2521,0.2525,0.2525,0.2525,0.000328,AlterBBN stand_cosmo.x 5,Primordial helium-4 mass fraction.
+D/H,D/H,H2/H,2.766e-05,2.674e-05,2.558e-05,2.674e-05,5.462e-07,AlterBBN stand_cosmo.x 5,Deuterium-to-hydrogen number ratio.
+He3/H,$^3$He/H,He3/H,1.056e-05,1.067e-05,1.068e-05,1.067e-05,1.73e-07,AlterBBN stand_cosmo.x 5,Helium-3-to-hydrogen number ratio.
+Li7/H,$^7$Li/H,Li7/H,4.582e-10,4.972e-10,5.497e-10,4.972e-10,3.616e-11,AlterBBN stand_cosmo.x 5,Final mass-7 lithium abundance reported by AlterBBN. This is the quantity compared with observed Li7/H.
+Li6/H,$^6$Li/H,Li6/H,1.903e-15,1.211e-14,3.843e-14,1.211e-14,1.219e-14,AlterBBN stand_cosmo.x 5,Lithium-6-to-hydrogen number ratio. Not used in the main observational comparison.
+Be7/H,$^7$Be/H,Be7/H,4.268e-10,4.652e-10,5.179e-10,4.652e-10,3.548e-11,AlterBBN stand_cosmo.x 5,Beryllium-7-to-hydrogen number ratio at the end of the BBN calculation.

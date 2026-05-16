@@ -1,18 +1,18 @@
-\begin{tabular}{llrrl}
+\begin{tabular}{llllll}
 \toprule
-observable & kind & value & sigma & source \\
+observable & kind & value & sigma & source & notes \\
 \midrule
-D/H & t0_50s & 4.9683e-09 & NaN & pynucastro model \\
-D/H & t0_10s & 3.9696e-19 & NaN & pynucastro model \\
-D/H & observed & 2.5270e-05 & 3.0000e-07 & Cooke2018 \\
-Yp_He4 & t0_50s & 2.4989e-01 & NaN & pynucastro model \\
-Yp_He4 & t0_10s & 3.3331e-01 & NaN & pynucastro model \\
-Yp_He4 & observed & 2.4620e-01 & 2.2000e-03 & Aver2021 \\
-He3/H & t0_50s & 5.2629e-06 & NaN & pynucastro model \\
-He3/H & t0_10s & 4.2595e-06 & NaN & pynucastro model \\
-He3/H & observed & 1.1000e-05 & 2.0000e-06 & Steigman2010 \\
-Li7/H & t0_50s & 9.4692e-08 & NaN & pynucastro model \\
-Li7/H & t0_10s & 1.8585e-06 & NaN & pynucastro model \\
-Li7/H & observed & 1.6000e-10 & 3.0000e-11 & FieldsLithiumReview \\
+Yp_He4 & pynucastro & 0.24989 &  & pynucastro light network & column=X_He4 \\
+Yp_He4 & AlterBBN & 0.25250 & 0.00033 & AlterBBN stand_cosmo.x 5 & Primordial helium-4 mass fraction. \\
+Yp_He4 & observed & 0.24620 & 0.00220 & Aver2021 & observational reference used in the memory \\
+D/H & pynucastro & 5.586e-09 &  & pynucastro light network & column=D/H \\
+D/H & AlterBBN & 2.674e-05 & 5.462e-07 & AlterBBN stand_cosmo.x 5 & Deuterium-to-hydrogen number ratio. \\
+D/H & observed & 2.527e-05 & 3.000e-07 & Cooke2018 & observational reference used in the memory \\
+He3/H & pynucastro & 5.263e-06 &  & pynucastro light network & column=He3/H \\
+He3/H & AlterBBN & 1.067e-05 & 1.730e-07 & AlterBBN stand_cosmo.x 5 & Helium-3-to-hydrogen number ratio. \\
+He3/H & observed & 1.100e-05 & 2.000e-06 & Steigman2010 & observational reference used in the memory \\
+Li7/H & pynucastro & 9.465e-08 &  & pynucastro light network & column=Li7_plus_Be7_over_H \\
+Li7/H & AlterBBN & 4.972e-10 & 3.616e-11 & AlterBBN stand_cosmo.x 5 & Final mass-7 lithium abundance reported by AlterBBN. This is the quantity compared with observed Li7/H. \\
+Li7/H & observed & 1.600e-10 & 3.000e-11 & FieldsLithiumReview & observational reference used in the memory \\
 \bottomrule
 \end{tabular}

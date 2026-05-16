@@ -1,0 +1,35 @@
+from,to,rate
+n,H1,n ⟶ p + e⁻ + 𝜈
+H3,He3,H3 ⟶ He3 + e⁻ + 𝜈
+He3,H3,He3 + e⁻ ⟶ H3 + 𝜈
+Be7,Li7,Be7 + e⁻ ⟶ Li7 + 𝜈
+n,H2,n + p ⟶ H2 + 𝛾
+H1,H2,n + p ⟶ H2 + 𝛾
+n,H3,H2 + n ⟶ H3 + 𝛾
+H2,H3,H2 + n ⟶ H3 + 𝛾
+H1,He3,H2 + p ⟶ He3 + 𝛾
+H2,He3,H2 + p ⟶ He3 + 𝛾
+H2,He4,H2 + H2 ⟶ He4 + 𝛾
+H1,He4,H3 + p ⟶ He4 + 𝛾
+H3,He4,H3 + p ⟶ He4 + 𝛾
+He4,Li7,H3 + He4 ⟶ Li7 + 𝛾
+H3,Li7,H3 + He4 ⟶ Li7 + 𝛾
+n,He4,He3 + n ⟶ He4 + 𝛾
+He3,He4,He3 + n ⟶ He4 + 𝛾
+He4,Be7,He3 + He4 ⟶ Be7 + 𝛾
+He3,Be7,He3 + He4 ⟶ Be7 + 𝛾
+H2,n,H2 + H2 ⟶ n + He3
+H2,H1,H2 + H2 ⟶ p + H3
+H3,n,H3 + H2 ⟶ n + He4
+He3,H1,He3 + n ⟶ p + H3
+H3,H2,He3 + H3 ⟶ H2 + He4
+He3,H2,He3 + H3 ⟶ H2 + He4
+Li7,He4,Li7 + p ⟶ He4 + He4
+n,Li7,Be7 + n ⟶ p + Li7
+Be7,H1,Be7 + n ⟶ p + Li7
+Be7,He4,Be7 + n ⟶ He4 + He4
+H3,H1,He3 + H3 ⟶ n + p + He4
+He3,n,He3 + H3 ⟶ n + p + He4
+Li7,n,Li7 + H2 ⟶ n + He4 + He4
+Li7,H1,Li7 + He3 ⟶ n + p + He4 + He4
+Be7,n,Be7 + H3 ⟶ n + p + He4 + He4

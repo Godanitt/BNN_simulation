@@ -1,21 +1,11 @@
 # Memoria Typst compatible con `BNN_simulation`
 
-Esta carpeta está pensada para vivir dentro de:
+La memoria vive dentro de:
 
 ```text
 BNN_simulation/
-├── main/
-│   ├── bbn_snapshots.csv
-│   ├── bbn_network_nuclei.csv
-│   ├── bbn_evolution.csv
-│   ├── bbn_snapshot_table_clean.csv
-│   ├── fig_thermo_history.pdf
-│   ├── fig_abundances_evolution.pdf
-│   └── fig_light_element_ratios.pdf
-└── memoria/
-    ├── main.typ
-    ├── references.bib
-    └── typst/csv_tools.typ
+├── main/       # notebooks, scripts, data/, figures/, tables/, gifs/
+└── memoria/    # main.typ y references.bib
 ```
 
 La memoria **no copia** CSVs ni PDFs. Los lee directamente desde `../main/`.
@@ -37,4 +27,4 @@ typst compile memoria/main.typ memoria/memoria_bbn.pdf
 
 ## Actualizar resultados
 
-Ejecuta de nuevo los notebooks dentro de `main/` y recompila la memoria. Como los datos se leen desde `../main/`, no hace falta copiar nada.
+Ejecuta de nuevo los notebooks dentro de `main/` y recompila la memoria. El último notebook, `05_alterbbn_benchmark.ipynb`, debe ejecutarse al final porque sobrescribe las tablas y figuras comparativas con la versión que incluye AlterBBN.

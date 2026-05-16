@@ -1,0 +1,139 @@
+network,index,rate,reactants,products,Q_MeV
+with_li6,0,n ⟶ p + e⁻ + 𝜈,n,p,0.7823
+with_li6,1,H3 ⟶ He3 + e⁻ + 𝜈,t,He3,0.0186
+with_li6,2,He3 + e⁻ ⟶ H3 + 𝜈,He3,t,-0.019
+with_li6,3,Be7 + e⁻ ⟶ Li7 + 𝜈,Be7,Li7,0.863
+with_li6,4,H2 ⟶ n + p,d,n + p,-2.22457
+with_li6,5,H3 ⟶ n + H2,t,n + d,-6.25737
+with_li6,6,He3 ⟶ p + H2,He3,p + d,-5.493
+with_li6,7,He4 ⟶ n + He3,He4,n + He3,-20.5774
+with_li6,8,He4 ⟶ p + H3,He4,p + t,-19.814
+with_li6,9,He4 ⟶ H2 + H2,He4,d + d,-23.847
+with_li6,10,Li6 ⟶ He4 + H2,Li6,He4 + d,-1.47375
+with_li6,11,Li7 ⟶ n + Li6,Li7,n + Li6,-7.25037
+with_li6,12,Li7 ⟶ He4 + H3,Li7,He4 + t,-2.467
+with_li6,13,Be7 ⟶ p + Li6,Be7,p + Li6,-5.606
+with_li6,14,Be7 ⟶ He4 + He3,Be7,He4 + He3,-1.5861
+with_li6,15,Li6 ⟶ n + p + He4,Li6,n + p + He4,-3.7
+with_li6,16,n + p ⟶ H2 + 𝛾,n + p,d,2.22457
+with_li6,17,p + p ⟶ H2 + e⁺ + 𝜈,p + p,d,1.44206
+with_li6,18,p + p + e⁻ ⟶ H2 + 𝜈,p + p,d,1.44206
+with_li6,19,H2 + n ⟶ H3 + 𝛾,n + d,t,6.25737
+with_li6,20,H2 + p ⟶ He3 + 𝛾,p + d,He3,5.493
+with_li6,21,H2 + H2 ⟶ He4 + 𝛾,d + d,He4,23.847
+with_li6,22,H2 + He4 ⟶ Li6 + 𝛾,He4 + d,Li6,1.47375
+with_li6,23,H3 + p ⟶ He4 + 𝛾,p + t,He4,19.814
+with_li6,24,H3 + He4 ⟶ Li7 + 𝛾,He4 + t,Li7,2.467
+with_li6,25,He3 + n ⟶ He4 + 𝛾,n + He3,He4,20.5774
+with_li6,26,He3 + p ⟶ He4 + e⁺ + 𝜈,p + He3,He4,19.796
+with_li6,27,He3 + He4 ⟶ Be7 + 𝛾,He4 + He3,Be7,1.5861
+with_li6,28,Li6 + n ⟶ Li7 + 𝛾,n + Li6,Li7,7.25037
+with_li6,29,Li6 + p ⟶ Be7 + 𝛾,p + Li6,Be7,5.606
+with_li6,30,H2 + H2 ⟶ n + He3,d + d,n + He3,3.2689
+with_li6,31,H2 + H2 ⟶ p + H3,d + d,p + t,4.03266
+with_li6,32,H3 + p ⟶ n + He3,p + t,n + He3,-0.7638
+with_li6,33,H3 + p ⟶ H2 + H2,p + t,d + d,-4.03266
+with_li6,34,H3 + H2 ⟶ n + He4,d + t,n + He4,17.589
+with_li6,35,H3 + He4 ⟶ n + Li6,He4 + t,n + Li6,-4.782
+with_li6,36,He3 + n ⟶ p + H3,n + He3,p + t,0.7638
+with_li6,37,He3 + n ⟶ H2 + H2,n + He3,d + d,-3.2689
+with_li6,38,He3 + H2 ⟶ p + He4,d + He3,p + He4,18.353
+with_li6,39,He3 + H3 ⟶ H2 + He4,t + He3,d + He4,14.32
+with_li6,40,He3 + He4 ⟶ p + Li6,He4 + He3,p + Li6,-4.01917
+with_li6,41,n + He4 ⟶ H2 + H3,n + He4,d + t,-17.589
+with_li6,42,p + He4 ⟶ H2 + He3,p + He4,d + He3,-18.353
+with_li6,43,H2 + He4 ⟶ H3 + He3,d + He4,t + He3,-14.32
+with_li6,44,He4 + He4 ⟶ n + Be7,He4 + He4,n + Be7,-18.9905
+with_li6,45,He4 + He4 ⟶ p + Li7,He4 + He4,p + Li7,-17.347
+with_li6,46,Li6 + n ⟶ He4 + H3,n + Li6,He4 + t,4.782
+with_li6,47,Li6 + p ⟶ He4 + He3,p + Li6,He4 + He3,4.01917
+with_li6,48,Li6 + H2 ⟶ n + Be7,d + Li6,n + Be7,3.38163
+with_li6,49,Li6 + H2 ⟶ p + Li7,d + Li6,p + Li7,5.02597
+with_li6,50,Li7 + p ⟶ n + Be7,p + Li7,n + Be7,-1.644
+with_li6,51,Li7 + p ⟶ H2 + Li6,p + Li7,d + Li6,-5.02597
+with_li6,52,Li7 + p ⟶ He4 + He4,p + Li7,He4 + He4,17.347
+with_li6,53,Be7 + n ⟶ p + Li7,n + Be7,p + Li7,1.644
+with_li6,54,Be7 + n ⟶ H2 + Li6,n + Be7,d + Li6,-3.38163
+with_li6,55,Be7 + n ⟶ He4 + He4,n + Be7,He4 + He4,18.9905
+with_li6,56,H2 + p ⟶ n + p + p,p + d,n + p + p,-2.225
+with_li6,57,H3 + H3 ⟶ n + n + He4,t + t,n + n + He4,11.332
+with_li6,58,He3 + H3 ⟶ n + p + He4,t + He3,n + p + He4,12.096
+with_li6,59,He3 + He3 ⟶ p + p + He4,He3 + He3,p + p + He4,12.859
+with_li6,60,Li7 + H2 ⟶ n + He4 + He4,d + Li7,n + He4 + He4,15.121
+with_li6,61,Be7 + H2 ⟶ p + He4 + He4,d + Be7,p + He4 + He4,16.766
+with_li6,62,Li7 + H3 ⟶ n + n + He4 + He4,t + Li7,n + n + He4 + He4,8.86442
+with_li6,63,Li7 + He3 ⟶ n + p + He4 + He4,He3 + Li7,n + p + He4 + He4,9.62776
+with_li6,64,Be7 + H3 ⟶ n + p + He4 + He4,t + Be7,n + p + He4 + He4,10.5088
+with_li6,65,Be7 + He3 ⟶ p + p + He4 + He4,He3 + Be7,p + p + He4 + He4,11.2721
+with_li6,66,n + p + He4 ⟶ Li6 + 𝛾,n + p + He4,Li6,3.7
+with_li6,67,n + p + p ⟶ p + H2,n + p + p,p + d,2.225
+with_li6,68,n + n + He4 ⟶ H3 + H3,n + n + He4,t + t,-11.332
+with_li6,69,n + p + He4 ⟶ H3 + He3,n + p + He4,t + He3,-12.096
+with_li6,70,p + p + He4 ⟶ He3 + He3,p + p + He4,He3 + He3,-12.859
+with_li6,71,n + He4 + He4 ⟶ H2 + Li7,n + He4 + He4,d + Li7,-15.121
+with_li6,72,p + He4 + He4 ⟶ H2 + Be7,p + He4 + He4,d + Be7,-16.766
+with_li6,73,n + n + He4 + He4 ⟶ H3 + Li7,n + n + He4 + He4,t + Li7,-8.86442
+with_li6,74,n + p + He4 + He4 ⟶ He3 + Li7,n + p + He4 + He4,He3 + Li7,-9.62776
+with_li6,75,n + p + He4 + He4 ⟶ H3 + Be7,n + p + He4 + He4,t + Be7,-10.5088
+with_li6,76,p + p + He4 + He4 ⟶ He3 + Be7,p + p + He4 + He4,He3 + Be7,-11.2721
+mass7,0,n ⟶ p + e⁻ + 𝜈,n,p,0.7823
+mass7,1,H3 ⟶ He3 + e⁻ + 𝜈,t,He3,0.0186
+mass7,2,He3 + e⁻ ⟶ H3 + 𝜈,He3,t,-0.019
+mass7,3,Be7 + e⁻ ⟶ Li7 + 𝜈,Be7,Li7,0.863
+mass7,4,H2 ⟶ n + p,d,n + p,-2.22457
+mass7,5,H3 ⟶ n + H2,t,n + d,-6.25737
+mass7,6,He3 ⟶ p + H2,He3,p + d,-5.493
+mass7,7,He4 ⟶ n + He3,He4,n + He3,-20.5774
+mass7,8,He4 ⟶ p + H3,He4,p + t,-19.814
+mass7,9,He4 ⟶ H2 + H2,He4,d + d,-23.847
+mass7,10,Li7 ⟶ He4 + H3,Li7,He4 + t,-2.467
+mass7,11,Be7 ⟶ He4 + He3,Be7,He4 + He3,-1.5861
+mass7,12,n + p ⟶ H2 + 𝛾,n + p,d,2.22457
+mass7,13,p + p ⟶ H2 + e⁺ + 𝜈,p + p,d,1.44206
+mass7,14,p + p + e⁻ ⟶ H2 + 𝜈,p + p,d,1.44206
+mass7,15,H2 + n ⟶ H3 + 𝛾,n + d,t,6.25737
+mass7,16,H2 + p ⟶ He3 + 𝛾,p + d,He3,5.493
+mass7,17,H2 + H2 ⟶ He4 + 𝛾,d + d,He4,23.847
+mass7,18,H3 + p ⟶ He4 + 𝛾,p + t,He4,19.814
+mass7,19,H3 + He4 ⟶ Li7 + 𝛾,He4 + t,Li7,2.467
+mass7,20,He3 + n ⟶ He4 + 𝛾,n + He3,He4,20.5774
+mass7,21,He3 + p ⟶ He4 + e⁺ + 𝜈,p + He3,He4,19.796
+mass7,22,He3 + He4 ⟶ Be7 + 𝛾,He4 + He3,Be7,1.5861
+mass7,23,H2 + H2 ⟶ n + He3,d + d,n + He3,3.2689
+mass7,24,H2 + H2 ⟶ p + H3,d + d,p + t,4.03266
+mass7,25,H3 + p ⟶ n + He3,p + t,n + He3,-0.7638
+mass7,26,H3 + p ⟶ H2 + H2,p + t,d + d,-4.03266
+mass7,27,H3 + H2 ⟶ n + He4,d + t,n + He4,17.589
+mass7,28,He3 + n ⟶ p + H3,n + He3,p + t,0.7638
+mass7,29,He3 + n ⟶ H2 + H2,n + He3,d + d,-3.2689
+mass7,30,He3 + H2 ⟶ p + He4,d + He3,p + He4,18.353
+mass7,31,He3 + H3 ⟶ H2 + He4,t + He3,d + He4,14.32
+mass7,32,n + He4 ⟶ H2 + H3,n + He4,d + t,-17.589
+mass7,33,p + He4 ⟶ H2 + He3,p + He4,d + He3,-18.353
+mass7,34,H2 + He4 ⟶ H3 + He3,d + He4,t + He3,-14.32
+mass7,35,He4 + He4 ⟶ n + Be7,He4 + He4,n + Be7,-18.9905
+mass7,36,He4 + He4 ⟶ p + Li7,He4 + He4,p + Li7,-17.347
+mass7,37,Li7 + p ⟶ n + Be7,p + Li7,n + Be7,-1.644
+mass7,38,Li7 + p ⟶ He4 + He4,p + Li7,He4 + He4,17.347
+mass7,39,Be7 + n ⟶ p + Li7,n + Be7,p + Li7,1.644
+mass7,40,Be7 + n ⟶ He4 + He4,n + Be7,He4 + He4,18.9905
+mass7,41,H2 + p ⟶ n + p + p,p + d,n + p + p,-2.225
+mass7,42,H3 + H3 ⟶ n + n + He4,t + t,n + n + He4,11.332
+mass7,43,He3 + H3 ⟶ n + p + He4,t + He3,n + p + He4,12.096
+mass7,44,He3 + He3 ⟶ p + p + He4,He3 + He3,p + p + He4,12.859
+mass7,45,Li7 + H2 ⟶ n + He4 + He4,d + Li7,n + He4 + He4,15.121
+mass7,46,Be7 + H2 ⟶ p + He4 + He4,d + Be7,p + He4 + He4,16.766
+mass7,47,Li7 + H3 ⟶ n + n + He4 + He4,t + Li7,n + n + He4 + He4,8.86442
+mass7,48,Li7 + He3 ⟶ n + p + He4 + He4,He3 + Li7,n + p + He4 + He4,9.62776
+mass7,49,Be7 + H3 ⟶ n + p + He4 + He4,t + Be7,n + p + He4 + He4,10.5088
+mass7,50,Be7 + He3 ⟶ p + p + He4 + He4,He3 + Be7,p + p + He4 + He4,11.2721
+mass7,51,n + p + p ⟶ p + H2,n + p + p,p + d,2.225
+mass7,52,n + n + He4 ⟶ H3 + H3,n + n + He4,t + t,-11.332
+mass7,53,n + p + He4 ⟶ H3 + He3,n + p + He4,t + He3,-12.096
+mass7,54,p + p + He4 ⟶ He3 + He3,p + p + He4,He3 + He3,-12.859
+mass7,55,n + He4 + He4 ⟶ H2 + Li7,n + He4 + He4,d + Li7,-15.121
+mass7,56,p + He4 + He4 ⟶ H2 + Be7,p + He4 + He4,d + Be7,-16.766
+mass7,57,n + n + He4 + He4 ⟶ H3 + Li7,n + n + He4 + He4,t + Li7,-8.86442
+mass7,58,n + p + He4 + He4 ⟶ He3 + Li7,n + p + He4 + He4,He3 + Li7,-9.62776
+mass7,59,n + p + He4 + He4 ⟶ H3 + Be7,n + p + He4 + He4,t + Be7,-10.5088
+mass7,60,p + p + He4 + He4 ⟶ He3 + Be7,p + p + He4 + He4,He3 + Be7,-11.2721

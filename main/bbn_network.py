@@ -14,9 +14,10 @@ jd = 2
 jt = 3
 jhe3 = 4
 jhe4 = 5
-jli7 = 6
-jbe7 = 7
-nnuc = 8
+jli6 = 6
+jli7 = 7
+jbe7 = 8
+nnuc = 9
 
 A = np.zeros((nnuc), dtype=np.int32)
 
@@ -26,6 +27,7 @@ A[jd] = 2
 A[jt] = 3
 A[jhe3] = 3
 A[jhe4] = 4
+A[jli6] = 6
 A[jli7] = 7
 A[jbe7] = 7
 
@@ -37,6 +39,7 @@ Z[jd] = 1
 Z[jt] = 1
 Z[jhe3] = 2
 Z[jhe4] = 2
+Z[jli6] = 3
 Z[jli7] = 3
 Z[jbe7] = 4
 
@@ -49,6 +52,7 @@ mass[jd] = 0.0030058819195053215
 mass[jt] = 0.004501206494525079
 mass[jhe3] = 0.004501176706825056
 mass[jhe4] = 0.0059735574859708365
+mass[jli6] = 0.008977078184259593
 mass[jli7] = 0.010470810414554471
 mass[jbe7] = 0.010472191322584432
 
@@ -59,6 +63,7 @@ names.append("H2")
 names.append("H3")
 names.append("He3")
 names.append("He4")
+names.append("Li6")
 names.append("Li7")
 names.append("Be7")
 
@@ -91,17 +96,24 @@ def energy_release(dY):
     ("n_d_to_t_reaclib", numba.float64),
     ("p_d_to_He3_reaclib", numba.float64),
     ("d_d_to_He4_reaclib", numba.float64),
+    ("He4_d_to_Li6_reaclib", numba.float64),
     ("p_t_to_He4_reaclib", numba.float64),
     ("He4_t_to_Li7_reaclib", numba.float64),
     ("n_He3_to_He4_reaclib", numba.float64),
     ("p_He3_to_He4_reaclib", numba.float64),
     ("He4_He3_to_Be7_reaclib", numba.float64),
+    ("n_Li6_to_Li7_reaclib", numba.float64),
+    ("p_Li6_to_Be7_reaclib", numba.float64),
     ("d_d_to_n_He3_reaclib", numba.float64),
     ("d_d_to_p_t_reaclib", numba.float64),
     ("d_t_to_n_He4_reaclib", numba.float64),
     ("n_He3_to_p_t_reaclib", numba.float64),
     ("d_He3_to_p_He4_reaclib", numba.float64),
     ("t_He3_to_d_He4_reaclib", numba.float64),
+    ("n_Li6_to_He4_t_reaclib", numba.float64),
+    ("p_Li6_to_He4_He3_reaclib", numba.float64),
+    ("d_Li6_to_n_Be7_reaclib", numba.float64),
+    ("d_Li6_to_p_Li7_reaclib", numba.float64),
     ("p_Li7_to_He4_He4_reaclib", numba.float64),
     ("n_Be7_to_p_Li7_reaclib", numba.float64),
     ("n_Be7_to_He4_He4_reaclib", numba.float64),
@@ -114,6 +126,7 @@ def energy_release(dY):
     ("He3_Li7_to_n_p_He4_He4_reaclib", numba.float64),
     ("t_Be7_to_n_p_He4_He4_reaclib", numba.float64),
     ("He3_Be7_to_p_p_He4_He4_reaclib", numba.float64),
+    ("n_p_He4_to_Li6_reaclib", numba.float64),
     ("n_p_p_to_p_d_reaclib", numba.float64),
 ])
 class RateEval:
@@ -128,17 +141,24 @@ class RateEval:
         self.n_d_to_t_reaclib = np.nan
         self.p_d_to_He3_reaclib = np.nan
         self.d_d_to_He4_reaclib = np.nan
+        self.He4_d_to_Li6_reaclib = np.nan
         self.p_t_to_He4_reaclib = np.nan
         self.He4_t_to_Li7_reaclib = np.nan
         self.n_He3_to_He4_reaclib = np.nan
         self.p_He3_to_He4_reaclib = np.nan
         self.He4_He3_to_Be7_reaclib = np.nan
+        self.n_Li6_to_Li7_reaclib = np.nan
+        self.p_Li6_to_Be7_reaclib = np.nan
         self.d_d_to_n_He3_reaclib = np.nan
         self.d_d_to_p_t_reaclib = np.nan
         self.d_t_to_n_He4_reaclib = np.nan
         self.n_He3_to_p_t_reaclib = np.nan
         self.d_He3_to_p_He4_reaclib = np.nan
         self.t_He3_to_d_He4_reaclib = np.nan
+        self.n_Li6_to_He4_t_reaclib = np.nan
+        self.p_Li6_to_He4_He3_reaclib = np.nan
+        self.d_Li6_to_n_Be7_reaclib = np.nan
+        self.d_Li6_to_p_Li7_reaclib = np.nan
         self.p_Li7_to_He4_He4_reaclib = np.nan
         self.n_Be7_to_p_Li7_reaclib = np.nan
         self.n_Be7_to_He4_He4_reaclib = np.nan
@@ -151,6 +171,7 @@ class RateEval:
         self.He3_Li7_to_n_p_He4_He4_reaclib = np.nan
         self.t_Be7_to_n_p_He4_He4_reaclib = np.nan
         self.He3_Be7_to_p_p_He4_He4_reaclib = np.nan
+        self.n_p_He4_to_Li6_reaclib = np.nan
         self.n_p_p_to_p_d_reaclib = np.nan
 
 @numba.njit()
@@ -338,6 +359,29 @@ def d_d_to_He4_reaclib(rate_eval, tf, log_scor=0.0):
     rate_eval.d_d_to_He4_reaclib = rate
 
 @numba.njit()
+def He4_d_to_Li6_reaclib(rate_eval, tf, log_scor=0.0):
+    # d + He4 --> Li6
+    rate = 0.0
+
+    # tu19r
+    ln_set_rate =  4.12313 + -7.889*tf.T9i \
+                         + -1.5*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    # tu19n
+    ln_set_rate =  -0.676485 + 6.3911e-05*tf.T9i + -7.55198*tf.T913i + 5.77546*tf.T913 \
+                         + -0.487854*tf.T9 + 0.032833*tf.T953 + -1.12305*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.He4_d_to_Li6_reaclib = rate
+
+@numba.njit()
 def p_t_to_He4_reaclib(rate_eval, tf, log_scor=0.0):
     # t + p --> He4
     rate = 0.0
@@ -426,6 +470,35 @@ def He4_He3_to_Be7_reaclib(rate_eval, tf, log_scor=0.0):
     rate += set_rate
 
     rate_eval.He4_He3_to_Be7_reaclib = rate
+
+@numba.njit()
+def n_Li6_to_Li7_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + n --> Li7
+    rate = 0.0
+
+    # jz10n
+    ln_set_rate =  9.04782
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.n_Li6_to_Li7_reaclib = rate
+
+@numba.njit()
+def p_Li6_to_Be7_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + p --> Be7
+    rate = 0.0
+
+    # nacrn
+    ln_set_rate =  14.2792 + -8.4372*tf.T913i + -0.515473*tf.T913 \
+                         + 0.0285578*tf.T9 + 0.00879731*tf.T953 + -0.666667*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.p_Li6_to_Be7_reaclib = rate
 
 @numba.njit()
 def d_d_to_n_He3_reaclib(rate_eval, tf, log_scor=0.0):
@@ -540,6 +613,73 @@ def t_He3_to_d_He4_reaclib(rate_eval, tf, log_scor=0.0):
     rate += set_rate
 
     rate_eval.t_He3_to_d_He4_reaclib = rate
+
+@numba.njit()
+def n_Li6_to_He4_t_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + n --> He4 + t
+    rate = 0.0
+
+    # cf88r
+    ln_set_rate =  21.665 + -2.39128*tf.T9i \
+                         + -1.5*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    # cf88n
+    ln_set_rate =  18.9496 + -0.001281*tf.T9i
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.n_Li6_to_He4_t_reaclib = rate
+
+@numba.njit()
+def p_Li6_to_He4_He3_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + p --> He4 + He3
+    rate = 0.0
+
+    # pt05n
+    ln_set_rate =  24.3475 + -8.39481*tf.T913i + -0.165254*tf.T913 \
+                         + -0.16936*tf.T9 + 0.0533676*tf.T953 + -0.666667*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.p_Li6_to_He4_He3_reaclib = rate
+
+@numba.njit()
+def d_Li6_to_n_Be7_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + d --> n + Be7
+    rate = 0.0
+
+    # mafon
+    ln_set_rate =  28.0095 + -4.77456e-12*tf.T9i + -10.259*tf.T913i + -2.01559e-09*tf.T913 \
+                         + 1.99542e-10*tf.T9 + -1.65595e-11*tf.T953 + -0.666667*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.d_Li6_to_n_Be7_reaclib = rate
+
+@numba.njit()
+def d_Li6_to_p_Li7_reaclib(rate_eval, tf, log_scor=0.0):
+    # Li6 + d --> p + Li7
+    rate = 0.0
+
+    # mafon
+    ln_set_rate =  28.0231 + -10.135*tf.T913i \
+                         + -0.666667*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.d_Li6_to_p_Li7_reaclib = rate
 
 @numba.njit()
 def p_Li7_to_He4_He4_reaclib(rate_eval, tf, log_scor=0.0):
@@ -754,6 +894,21 @@ def He3_Be7_to_p_p_He4_He4_reaclib(rate_eval, tf, log_scor=0.0):
     rate_eval.He3_Be7_to_p_p_He4_He4_reaclib = rate
 
 @numba.njit()
+def n_p_He4_to_Li6_reaclib(rate_eval, tf, log_scor=0.0):
+    # n + p + He4 --> Li6
+    rate = 0.0
+
+    # cf88r
+    ln_set_rate =  -12.2851 + -19.353*tf.T9i + 1.44987*tf.T913i + -1.42759*tf.T913 \
+                         + 0.0454035*tf.T9 + 0.00471161*tf.T953 + -1.0*tf.lnT9
+
+    ln_set_rate += log_scor
+    set_rate = np.exp(ln_set_rate)
+    rate += set_rate
+
+    rate_eval.n_p_He4_to_Li6_reaclib = rate
+
+@numba.njit()
 def n_p_p_to_p_d_reaclib(rate_eval, tf, log_scor=0.0):
     # n + p + p --> p + d
     rate = 0.0
@@ -785,13 +940,17 @@ def do_rate_eval(t, Y, rho, T, screen_func):
     log_scor_He3_Be7 = 0.0
     log_scor_p_p = 0.0
     log_scor_t_He3 = 0.0
-    log_scor_t_Be7 = 0.0
     log_scor_p_d = 0.0
     log_scor_t_He4 = 0.0
     log_scor_p_He3 = 0.0
+    log_scor_t_Be7 = 0.0
     log_scor_d_d = 0.0
     log_scor_He3_Li7 = 0.0
     log_scor_d_He3 = 0.0
+    log_scor_p_He4 = 0.0
+    log_scor_p_Li6 = 0.0
+    log_scor_d_He4 = 0.0
+    log_scor_d_Li6 = 0.0
     log_scor_d_Be7 = 0.0
     log_scor_t_t = 0.0
     log_scor_t_Li7 = 0.0
@@ -816,20 +975,28 @@ def do_rate_eval(t, Y, rho, T, screen_func):
         log_scor_p_p = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 2, 3)
         log_scor_t_He3 = screen_func(plasma_state, scn_fac)
-        scn_fac = ScreenFactors(1, 3, 4, 7)
-        log_scor_t_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 1, 1, 2)
         log_scor_p_d = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 2, 4)
         log_scor_t_He4 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 1, 2, 3)
         log_scor_p_He3 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 3, 4, 7)
+        log_scor_t_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 1, 2)
         log_scor_d_d = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(2, 3, 3, 7)
         log_scor_He3_Li7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 2, 3)
         log_scor_d_He3 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 1, 2, 4)
+        log_scor_p_He4 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 1, 3, 6)
+        log_scor_p_Li6 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 2, 2, 4)
+        log_scor_d_He4 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 2, 3, 6)
+        log_scor_d_Li6 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 4, 7)
         log_scor_d_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 1, 3)
@@ -850,17 +1017,24 @@ def do_rate_eval(t, Y, rho, T, screen_func):
     n_d_to_t_reaclib(rate_eval, tf)
     p_d_to_He3_reaclib(rate_eval, tf, log_scor=log_scor_p_d)
     d_d_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
+    He4_d_to_Li6_reaclib(rate_eval, tf, log_scor=log_scor_d_He4)
     p_t_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_t)
     He4_t_to_Li7_reaclib(rate_eval, tf, log_scor=log_scor_t_He4)
     n_He3_to_He4_reaclib(rate_eval, tf)
     p_He3_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_He3)
     He4_He3_to_Be7_reaclib(rate_eval, tf, log_scor=log_scor_He3_He4)
+    n_Li6_to_Li7_reaclib(rate_eval, tf)
+    p_Li6_to_Be7_reaclib(rate_eval, tf, log_scor=log_scor_p_Li6)
     d_d_to_n_He3_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
     d_d_to_p_t_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
     d_t_to_n_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_t)
     n_He3_to_p_t_reaclib(rate_eval, tf)
     d_He3_to_p_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_He3)
     t_He3_to_d_He4_reaclib(rate_eval, tf, log_scor=log_scor_t_He3)
+    n_Li6_to_He4_t_reaclib(rate_eval, tf)
+    p_Li6_to_He4_He3_reaclib(rate_eval, tf, log_scor=log_scor_p_Li6)
+    d_Li6_to_n_Be7_reaclib(rate_eval, tf, log_scor=log_scor_d_Li6)
+    d_Li6_to_p_Li7_reaclib(rate_eval, tf, log_scor=log_scor_d_Li6)
     p_Li7_to_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_Li7)
     n_Be7_to_p_Li7_reaclib(rate_eval, tf)
     n_Be7_to_He4_He4_reaclib(rate_eval, tf)
@@ -873,6 +1047,7 @@ def do_rate_eval(t, Y, rho, T, screen_func):
     He3_Li7_to_n_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_He3_Li7)
     t_Be7_to_n_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_t_Be7)
     He3_Be7_to_p_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_He3_Be7)
+    n_p_He4_to_Li6_reaclib(rate_eval, tf, log_scor=log_scor_p_He4)
     n_p_p_to_p_d_reaclib(rate_eval, tf, log_scor=log_scor_p_p)
 
     return rate_eval
@@ -888,9 +1063,12 @@ def rhs_eq(t, Y, rho, T, screen_func):
           -rho*Y[jn]*Y[jp]*rate_eval.n_p_to_d_reaclib  +
           -rho*Y[jn]*Y[jd]*rate_eval.n_d_to_t_reaclib  +
           -rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_He4_reaclib  +
+          -rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib  +
           +5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_n_He3_reaclib  +
           +rho*Y[jd]*Y[jt]*rate_eval.d_t_to_n_He4_reaclib  +
           -rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib  +
+          -rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib  +
+          +rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib  +
           -rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib  +
           -rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib  +
           + 2*5.00000000000000e-01*rho*Y[jt]**2*rate_eval.t_t_to_n_n_He4_reaclib  +
@@ -899,6 +1077,7 @@ def rhs_eq(t, Y, rho, T, screen_func):
           + 2*rho*Y[jt]*Y[jli7]*rate_eval.t_Li7_to_n_n_He4_He4_reaclib  +
           +rho*Y[jhe3]*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib  +
           +rho*Y[jt]*Y[jbe7]*rate_eval.t_Be7_to_n_p_He4_He4_reaclib  +
+          -rho**2*Y[jn]*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib  +
           -5.00000000000000e-01*rho**2*Y[jn]*Y[jp]**2*rate_eval.n_p_p_to_p_d_reaclib
        )
 
@@ -910,9 +1089,12 @@ def rhs_eq(t, Y, rho, T, screen_func):
           -rho*Y[jp]*Y[jd]*rate_eval.p_d_to_He3_reaclib  +
           -rho*Y[jp]*Y[jt]*rate_eval.p_t_to_He4_reaclib  +
           -rho*Y[jp]*Y[jhe3]*rate_eval.p_He3_to_He4_reaclib  +
+          -rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib  +
           +5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_p_t_reaclib  +
           +rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib  +
           +rho*Y[jd]*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib  +
+          -rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib  +
+          +rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib  +
           -rho*Y[jp]*Y[jli7]*rate_eval.p_Li7_to_He4_He4_reaclib  +
           +rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib  +
           +rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_n_p_He4_reaclib  +
@@ -921,6 +1103,7 @@ def rhs_eq(t, Y, rho, T, screen_func):
           +rho*Y[jhe3]*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib  +
           +rho*Y[jt]*Y[jbe7]*rate_eval.t_Be7_to_n_p_He4_He4_reaclib  +
           + 2*rho*Y[jhe3]*Y[jbe7]*rate_eval.He3_Be7_to_p_p_He4_He4_reaclib  +
+          -rho**2*Y[jn]*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib  +
           -5.00000000000000e-01*rho**2*Y[jn]*Y[jp]**2*rate_eval.n_p_p_to_p_d_reaclib
        )
 
@@ -931,11 +1114,14 @@ def rhs_eq(t, Y, rho, T, screen_func):
           -rho*Y[jn]*Y[jd]*rate_eval.n_d_to_t_reaclib  +
           -rho*Y[jp]*Y[jd]*rate_eval.p_d_to_He3_reaclib  +
           + -2*5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_He4_reaclib  +
+          -rho*Y[jd]*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib  +
           + -2*5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_n_He3_reaclib  +
           + -2*5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_p_t_reaclib  +
           -rho*Y[jd]*Y[jt]*rate_eval.d_t_to_n_He4_reaclib  +
           -rho*Y[jd]*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib  +
           +rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_d_He4_reaclib  +
+          -rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib  +
+          -rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib  +
           -rho*Y[jd]*Y[jli7]*rate_eval.d_Li7_to_n_He4_He4_reaclib  +
           -rho*Y[jd]*Y[jbe7]*rate_eval.d_Be7_to_p_He4_He4_reaclib  +
           +5.00000000000000e-01*rho**2*Y[jn]*Y[jp]**2*rate_eval.n_p_p_to_p_d_reaclib
@@ -950,6 +1136,7 @@ def rhs_eq(t, Y, rho, T, screen_func):
           -rho*Y[jd]*Y[jt]*rate_eval.d_t_to_n_He4_reaclib  +
           +rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib  +
           -rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_d_He4_reaclib  +
+          +rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib  +
           + -2*5.00000000000000e-01*rho*Y[jt]**2*rate_eval.t_t_to_n_n_He4_reaclib  +
           -rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_n_p_He4_reaclib  +
           -rho*Y[jt]*Y[jli7]*rate_eval.t_Li7_to_n_n_He4_He4_reaclib  +
@@ -966,6 +1153,7 @@ def rhs_eq(t, Y, rho, T, screen_func):
           -rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib  +
           -rho*Y[jd]*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib  +
           -rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_d_He4_reaclib  +
+          +rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib  +
           -rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_n_p_He4_reaclib  +
           + -2*5.00000000000000e-01*rho*Y[jhe3]**2*rate_eval.He3_He3_to_p_p_He4_reaclib  +
           -rho*Y[jhe3]*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib  +
@@ -974,6 +1162,7 @@ def rhs_eq(t, Y, rho, T, screen_func):
 
     dYdt[jhe4] = (
           +5.00000000000000e-01*rho*Y[jd]**2*rate_eval.d_d_to_He4_reaclib  +
+          -rho*Y[jd]*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib  +
           +rho*Y[jp]*Y[jt]*rate_eval.p_t_to_He4_reaclib  +
           -rho*Y[jt]*Y[jhe4]*rate_eval.He4_t_to_Li7_reaclib  +
           +rho*Y[jn]*Y[jhe3]*rate_eval.n_He3_to_He4_reaclib  +
@@ -982,6 +1171,8 @@ def rhs_eq(t, Y, rho, T, screen_func):
           +rho*Y[jd]*Y[jt]*rate_eval.d_t_to_n_He4_reaclib  +
           +rho*Y[jd]*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib  +
           +rho*Y[jt]*Y[jhe3]*rate_eval.t_He3_to_d_He4_reaclib  +
+          +rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib  +
+          +rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib  +
           + 2*rho*Y[jp]*Y[jli7]*rate_eval.p_Li7_to_He4_He4_reaclib  +
           + 2*rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib  +
           +5.00000000000000e-01*rho*Y[jt]**2*rate_eval.t_t_to_n_n_He4_reaclib  +
@@ -992,12 +1183,26 @@ def rhs_eq(t, Y, rho, T, screen_func):
           + 2*rho*Y[jt]*Y[jli7]*rate_eval.t_Li7_to_n_n_He4_He4_reaclib  +
           + 2*rho*Y[jhe3]*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib  +
           + 2*rho*Y[jt]*Y[jbe7]*rate_eval.t_Be7_to_n_p_He4_He4_reaclib  +
-          + 2*rho*Y[jhe3]*Y[jbe7]*rate_eval.He3_Be7_to_p_p_He4_He4_reaclib
+          + 2*rho*Y[jhe3]*Y[jbe7]*rate_eval.He3_Be7_to_p_p_He4_He4_reaclib  +
+          -rho**2*Y[jn]*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    dYdt[jli6] = (
+          +rho*Y[jd]*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib  +
+          -rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib  +
+          -rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib  +
+          -rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib  +
+          -rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib  +
+          -rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib  +
+          -rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib  +
+          +rho**2*Y[jn]*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        )
 
     dYdt[jli7] = (
           +rho*ye(Y)*Y[jbe7]*rate_eval.Be7_to_Li7_reaclib  +
           +rho*Y[jt]*Y[jhe4]*rate_eval.He4_t_to_Li7_reaclib  +
+          +rho*Y[jn]*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib  +
+          +rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib  +
           -rho*Y[jp]*Y[jli7]*rate_eval.p_Li7_to_He4_He4_reaclib  +
           +rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib  +
           -rho*Y[jd]*Y[jli7]*rate_eval.d_Li7_to_n_He4_He4_reaclib  +
@@ -1008,6 +1213,8 @@ def rhs_eq(t, Y, rho, T, screen_func):
     dYdt[jbe7] = (
           -rho*ye(Y)*Y[jbe7]*rate_eval.Be7_to_Li7_reaclib  +
           +rho*Y[jhe3]*Y[jhe4]*rate_eval.He4_He3_to_Be7_reaclib  +
+          +rho*Y[jp]*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib  +
+          +rho*Y[jd]*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib  +
           -rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib  +
           -rho*Y[jn]*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib  +
           -rho*Y[jd]*Y[jbe7]*rate_eval.d_Be7_to_p_He4_He4_reaclib  +
@@ -1034,13 +1241,17 @@ def jacobian_eq(t, Y, rho, T, screen_func):
     log_scor_He3_Be7 = 0.0
     log_scor_p_p = 0.0
     log_scor_t_He3 = 0.0
-    log_scor_t_Be7 = 0.0
     log_scor_p_d = 0.0
     log_scor_t_He4 = 0.0
     log_scor_p_He3 = 0.0
+    log_scor_t_Be7 = 0.0
     log_scor_d_d = 0.0
     log_scor_He3_Li7 = 0.0
     log_scor_d_He3 = 0.0
+    log_scor_p_He4 = 0.0
+    log_scor_p_Li6 = 0.0
+    log_scor_d_He4 = 0.0
+    log_scor_d_Li6 = 0.0
     log_scor_d_Be7 = 0.0
     log_scor_t_t = 0.0
     log_scor_t_Li7 = 0.0
@@ -1065,20 +1276,28 @@ def jacobian_eq(t, Y, rho, T, screen_func):
         log_scor_p_p = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 2, 3)
         log_scor_t_He3 = screen_func(plasma_state, scn_fac)
-        scn_fac = ScreenFactors(1, 3, 4, 7)
-        log_scor_t_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 1, 1, 2)
         log_scor_p_d = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 2, 4)
         log_scor_t_He4 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 1, 2, 3)
         log_scor_p_He3 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 3, 4, 7)
+        log_scor_t_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 1, 2)
         log_scor_d_d = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(2, 3, 3, 7)
         log_scor_He3_Li7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 2, 3)
         log_scor_d_He3 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 1, 2, 4)
+        log_scor_p_He4 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 1, 3, 6)
+        log_scor_p_Li6 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 2, 2, 4)
+        log_scor_d_He4 = screen_func(plasma_state, scn_fac)
+        scn_fac = ScreenFactors(1, 2, 3, 6)
+        log_scor_d_Li6 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 2, 4, 7)
         log_scor_d_Be7 = screen_func(plasma_state, scn_fac)
         scn_fac = ScreenFactors(1, 3, 1, 3)
@@ -1099,17 +1318,24 @@ def jacobian_eq(t, Y, rho, T, screen_func):
     n_d_to_t_reaclib(rate_eval, tf)
     p_d_to_He3_reaclib(rate_eval, tf, log_scor=log_scor_p_d)
     d_d_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
+    He4_d_to_Li6_reaclib(rate_eval, tf, log_scor=log_scor_d_He4)
     p_t_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_t)
     He4_t_to_Li7_reaclib(rate_eval, tf, log_scor=log_scor_t_He4)
     n_He3_to_He4_reaclib(rate_eval, tf)
     p_He3_to_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_He3)
     He4_He3_to_Be7_reaclib(rate_eval, tf, log_scor=log_scor_He3_He4)
+    n_Li6_to_Li7_reaclib(rate_eval, tf)
+    p_Li6_to_Be7_reaclib(rate_eval, tf, log_scor=log_scor_p_Li6)
     d_d_to_n_He3_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
     d_d_to_p_t_reaclib(rate_eval, tf, log_scor=log_scor_d_d)
     d_t_to_n_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_t)
     n_He3_to_p_t_reaclib(rate_eval, tf)
     d_He3_to_p_He4_reaclib(rate_eval, tf, log_scor=log_scor_d_He3)
     t_He3_to_d_He4_reaclib(rate_eval, tf, log_scor=log_scor_t_He3)
+    n_Li6_to_He4_t_reaclib(rate_eval, tf)
+    p_Li6_to_He4_He3_reaclib(rate_eval, tf, log_scor=log_scor_p_Li6)
+    d_Li6_to_n_Be7_reaclib(rate_eval, tf, log_scor=log_scor_d_Li6)
+    d_Li6_to_p_Li7_reaclib(rate_eval, tf, log_scor=log_scor_d_Li6)
     p_Li7_to_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_p_Li7)
     n_Be7_to_p_Li7_reaclib(rate_eval, tf)
     n_Be7_to_He4_He4_reaclib(rate_eval, tf)
@@ -1122,6 +1348,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
     He3_Li7_to_n_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_He3_Li7)
     t_Be7_to_n_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_t_Be7)
     He3_Be7_to_p_p_He4_He4_reaclib(rate_eval, tf, log_scor=log_scor_He3_Be7)
+    n_p_He4_to_Li6_reaclib(rate_eval, tf, log_scor=log_scor_p_He4)
     n_p_p_to_p_d_reaclib(rate_eval, tf, log_scor=log_scor_p_p)
 
     jac = np.zeros((nnuc, nnuc), dtype=np.float64)
@@ -1131,14 +1358,18 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jp]*rate_eval.n_p_to_d_reaclib
        -rho*Y[jd]*rate_eval.n_d_to_t_reaclib
        -rho*Y[jhe3]*rate_eval.n_He3_to_He4_reaclib
+       -rho*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib
        -rho*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib
+       -rho*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib
        -rho*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib
        -rho*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib
+       -rho**2*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        -5.00000000000000e-01*rho**2*Y[jp]**2*rate_eval.n_p_p_to_p_d_reaclib
        )
 
     jac[jn, jp] = (
        -rho*Y[jn]*rate_eval.n_p_to_d_reaclib
+       -rho**2*Y[jn]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        -5.00000000000000e-01*rho**2*Y[jn]*2*Y[jp]*rate_eval.n_p_p_to_p_d_reaclib
        )
 
@@ -1146,6 +1377,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jn]*rate_eval.n_d_to_t_reaclib
        +5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_n_He3_reaclib
        +rho*Y[jt]*rate_eval.d_t_to_n_He4_reaclib
+       +rho*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib
        +rho*Y[jli7]*rate_eval.d_Li7_to_n_He4_He4_reaclib
        )
 
@@ -1164,6 +1396,16 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        +rho*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib
        )
 
+    jac[jn, jhe4] = (
+       -rho**2*Y[jn]*Y[jp]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jn, jli6] = (
+       -rho*Y[jn]*rate_eval.n_Li6_to_Li7_reaclib
+       -rho*Y[jn]*rate_eval.n_Li6_to_He4_t_reaclib
+       +rho*Y[jd]*rate_eval.d_Li6_to_n_Be7_reaclib
+       )
+
     jac[jn, jli7] = (
        +rho*Y[jd]*rate_eval.d_Li7_to_n_He4_He4_reaclib
        +2*rho*Y[jt]*rate_eval.t_Li7_to_n_n_He4_He4_reaclib
@@ -1178,6 +1420,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
 
     jac[jp, jn] = (
        -rho*Y[jp]*rate_eval.n_p_to_d_reaclib
+       -rho**2*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        -2*5.00000000000000e-01*rho**2*Y[jp]**2*rate_eval.n_p_p_to_p_d_reaclib
        +rate_eval.n_to_p_reaclib
        +rho*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib
@@ -1192,7 +1435,10 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jd]*rate_eval.p_d_to_He3_reaclib
        -rho*Y[jt]*rate_eval.p_t_to_He4_reaclib
        -rho*Y[jhe3]*rate_eval.p_He3_to_He4_reaclib
+       -rho*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib
+       -rho*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib
        -rho*Y[jli7]*rate_eval.p_Li7_to_He4_He4_reaclib
+       -rho**2*Y[jn]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        -2*5.00000000000000e-01*rho**2*Y[jn]*2*Y[jp]*rate_eval.n_p_p_to_p_d_reaclib
        +5.00000000000000e-01*rho**2*Y[jn]*2*Y[jp]*rate_eval.n_p_p_to_p_d_reaclib
        )
@@ -1201,6 +1447,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jp]*rate_eval.p_d_to_He3_reaclib
        +5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_p_t_reaclib
        +rho*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib
+       +rho*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib
        +rho*Y[jbe7]*rate_eval.d_Be7_to_p_He4_He4_reaclib
        )
 
@@ -1218,6 +1465,16 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        +2*5.00000000000000e-01*rho*2*Y[jhe3]*rate_eval.He3_He3_to_p_p_He4_reaclib
        +rho*Y[jli7]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib
        +2*rho*Y[jbe7]*rate_eval.He3_Be7_to_p_p_He4_He4_reaclib
+       )
+
+    jac[jp, jhe4] = (
+       -rho**2*Y[jn]*Y[jp]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jp, jli6] = (
+       -rho*Y[jp]*rate_eval.p_Li6_to_Be7_reaclib
+       -rho*Y[jp]*rate_eval.p_Li6_to_He4_He3_reaclib
+       +rho*Y[jd]*rate_eval.d_Li6_to_p_Li7_reaclib
        )
 
     jac[jp, jli7] = (
@@ -1250,10 +1507,13 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jn]*rate_eval.n_d_to_t_reaclib
        -rho*Y[jp]*rate_eval.p_d_to_He3_reaclib
        -2*5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_He4_reaclib
+       -rho*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib
        -2*5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_n_He3_reaclib
        -2*5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_p_t_reaclib
        -rho*Y[jt]*rate_eval.d_t_to_n_He4_reaclib
        -rho*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib
+       -rho*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib
+       -rho*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib
        -rho*Y[jli7]*rate_eval.d_Li7_to_n_He4_He4_reaclib
        -rho*Y[jbe7]*rate_eval.d_Be7_to_p_He4_He4_reaclib
        )
@@ -1268,6 +1528,15 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        +rho*Y[jt]*rate_eval.t_He3_to_d_He4_reaclib
        )
 
+    jac[jd, jhe4] = (
+       -rho*Y[jd]*rate_eval.He4_d_to_Li6_reaclib
+       )
+
+    jac[jd, jli6] = (
+       -rho*Y[jd]*rate_eval.d_Li6_to_n_Be7_reaclib
+       -rho*Y[jd]*rate_eval.d_Li6_to_p_Li7_reaclib
+       )
+
     jac[jd, jli7] = (
        -rho*Y[jd]*rate_eval.d_Li7_to_n_He4_He4_reaclib
        )
@@ -1279,6 +1548,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
     jac[jt, jn] = (
        +rho*Y[jd]*rate_eval.n_d_to_t_reaclib
        +rho*Y[jhe3]*rate_eval.n_He3_to_p_t_reaclib
+       +rho*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib
        )
 
     jac[jt, jp] = (
@@ -1314,6 +1584,10 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jt]*rate_eval.He4_t_to_Li7_reaclib
        )
 
+    jac[jt, jli6] = (
+       +rho*Y[jn]*rate_eval.n_Li6_to_He4_t_reaclib
+       )
+
     jac[jt, jli7] = (
        -rho*Y[jt]*rate_eval.t_Li7_to_n_n_He4_He4_reaclib
        )
@@ -1330,6 +1604,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
     jac[jhe3, jp] = (
        -rho*Y[jhe3]*rate_eval.p_He3_to_He4_reaclib
        +rho*Y[jd]*rate_eval.p_d_to_He3_reaclib
+       +rho*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib
        )
 
     jac[jhe3, jd] = (
@@ -1362,6 +1637,10 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jhe3]*rate_eval.He4_He3_to_Be7_reaclib
        )
 
+    jac[jhe3, jli6] = (
+       +rho*Y[jp]*rate_eval.p_Li6_to_He4_He3_reaclib
+       )
+
     jac[jhe3, jli7] = (
        -rho*Y[jhe3]*rate_eval.He3_Li7_to_n_p_He4_He4_reaclib
        )
@@ -1371,17 +1650,22 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        )
 
     jac[jhe4, jn] = (
+       -rho**2*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        +rho*Y[jhe3]*rate_eval.n_He3_to_He4_reaclib
+       +rho*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib
        +2*rho*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib
        )
 
     jac[jhe4, jp] = (
+       -rho**2*Y[jn]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
        +rho*Y[jt]*rate_eval.p_t_to_He4_reaclib
        +rho*Y[jhe3]*rate_eval.p_He3_to_He4_reaclib
+       +rho*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib
        +2*rho*Y[jli7]*rate_eval.p_Li7_to_He4_He4_reaclib
        )
 
     jac[jhe4, jd] = (
+       -rho*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib
        +5.00000000000000e-01*rho*2*Y[jd]*rate_eval.d_d_to_He4_reaclib
        +rho*Y[jt]*rate_eval.d_t_to_n_He4_reaclib
        +rho*Y[jhe3]*rate_eval.d_He3_to_p_He4_reaclib
@@ -1413,8 +1697,15 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        )
 
     jac[jhe4, jhe4] = (
+       -rho*Y[jd]*rate_eval.He4_d_to_Li6_reaclib
        -rho*Y[jt]*rate_eval.He4_t_to_Li7_reaclib
        -rho*Y[jhe3]*rate_eval.He4_He3_to_Be7_reaclib
+       -rho**2*Y[jn]*Y[jp]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jhe4, jli6] = (
+       +rho*Y[jn]*rate_eval.n_Li6_to_He4_t_reaclib
+       +rho*Y[jp]*rate_eval.p_Li6_to_He4_He3_reaclib
        )
 
     jac[jhe4, jli7] = (
@@ -1431,7 +1722,40 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        +2*rho*Y[jhe3]*rate_eval.He3_Be7_to_p_p_He4_He4_reaclib
        )
 
+    jac[jli6, jn] = (
+       -rho*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib
+       -rho*Y[jli6]*rate_eval.n_Li6_to_He4_t_reaclib
+       +rho**2*Y[jp]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jli6, jp] = (
+       -rho*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib
+       -rho*Y[jli6]*rate_eval.p_Li6_to_He4_He3_reaclib
+       +rho**2*Y[jn]*Y[jhe4]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jli6, jd] = (
+       -rho*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib
+       -rho*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib
+       +rho*Y[jhe4]*rate_eval.He4_d_to_Li6_reaclib
+       )
+
+    jac[jli6, jhe4] = (
+       +rho*Y[jd]*rate_eval.He4_d_to_Li6_reaclib
+       +rho**2*Y[jn]*Y[jp]*rate_eval.n_p_He4_to_Li6_reaclib
+       )
+
+    jac[jli6, jli6] = (
+       -rho*Y[jn]*rate_eval.n_Li6_to_Li7_reaclib
+       -rho*Y[jp]*rate_eval.p_Li6_to_Be7_reaclib
+       -rho*Y[jn]*rate_eval.n_Li6_to_He4_t_reaclib
+       -rho*Y[jp]*rate_eval.p_Li6_to_He4_He3_reaclib
+       -rho*Y[jd]*rate_eval.d_Li6_to_n_Be7_reaclib
+       -rho*Y[jd]*rate_eval.d_Li6_to_p_Li7_reaclib
+       )
+
     jac[jli7, jn] = (
+       +rho*Y[jli6]*rate_eval.n_Li6_to_Li7_reaclib
        +rho*Y[jbe7]*rate_eval.n_Be7_to_p_Li7_reaclib
        )
 
@@ -1441,6 +1765,7 @@ def jacobian_eq(t, Y, rho, T, screen_func):
 
     jac[jli7, jd] = (
        -rho*Y[jli7]*rate_eval.d_Li7_to_n_He4_He4_reaclib
+       +rho*Y[jli6]*rate_eval.d_Li6_to_p_Li7_reaclib
        )
 
     jac[jli7, jt] = (
@@ -1454,6 +1779,11 @@ def jacobian_eq(t, Y, rho, T, screen_func):
 
     jac[jli7, jhe4] = (
        +rho*Y[jt]*rate_eval.He4_t_to_Li7_reaclib
+       )
+
+    jac[jli7, jli6] = (
+       +rho*Y[jn]*rate_eval.n_Li6_to_Li7_reaclib
+       +rho*Y[jd]*rate_eval.d_Li6_to_p_Li7_reaclib
        )
 
     jac[jli7, jli7] = (
@@ -1473,8 +1803,13 @@ def jacobian_eq(t, Y, rho, T, screen_func):
        -rho*Y[jbe7]*rate_eval.n_Be7_to_He4_He4_reaclib
        )
 
+    jac[jbe7, jp] = (
+       +rho*Y[jli6]*rate_eval.p_Li6_to_Be7_reaclib
+       )
+
     jac[jbe7, jd] = (
        -rho*Y[jbe7]*rate_eval.d_Be7_to_p_He4_He4_reaclib
+       +rho*Y[jli6]*rate_eval.d_Li6_to_n_Be7_reaclib
        )
 
     jac[jbe7, jt] = (
@@ -1488,6 +1823,11 @@ def jacobian_eq(t, Y, rho, T, screen_func):
 
     jac[jbe7, jhe4] = (
        +rho*Y[jhe3]*rate_eval.He4_He3_to_Be7_reaclib
+       )
+
+    jac[jbe7, jli6] = (
+       +rho*Y[jp]*rate_eval.p_Li6_to_Be7_reaclib
+       +rho*Y[jd]*rate_eval.d_Li6_to_n_Be7_reaclib
        )
 
     jac[jbe7, jbe7] = (

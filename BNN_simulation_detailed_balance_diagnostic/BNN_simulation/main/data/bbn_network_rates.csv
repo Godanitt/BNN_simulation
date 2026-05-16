@@ -1,0 +1,35 @@
+index,rate,reactants,products,Q_MeV
+0,n ⟶ p + e⁻ + 𝜈,n,p,0.7823
+1,H3 ⟶ He3 + e⁻ + 𝜈,t,He3,0.0186
+2,He3 + e⁻ ⟶ H3 + 𝜈,He3,t,-0.019
+3,Be7 + e⁻ ⟶ Li7 + 𝜈,Be7,Li7,0.863
+4,n + p ⟶ H2 + 𝛾,n + p,d,2.22457
+5,p + p ⟶ H2 + e⁺ + 𝜈,p + p,d,1.44206
+6,p + p + e⁻ ⟶ H2 + 𝜈,p + p,d,1.44206
+7,H2 + n ⟶ H3 + 𝛾,n + d,t,6.25737
+8,H2 + p ⟶ He3 + 𝛾,p + d,He3,5.493
+9,H2 + H2 ⟶ He4 + 𝛾,d + d,He4,23.847
+10,H3 + p ⟶ He4 + 𝛾,p + t,He4,19.814
+11,H3 + He4 ⟶ Li7 + 𝛾,He4 + t,Li7,2.467
+12,He3 + n ⟶ He4 + 𝛾,n + He3,He4,20.5774
+13,He3 + p ⟶ He4 + e⁺ + 𝜈,p + He3,He4,19.796
+14,He3 + He4 ⟶ Be7 + 𝛾,He4 + He3,Be7,1.5861
+15,H2 + H2 ⟶ n + He3,d + d,n + He3,3.2689
+16,H2 + H2 ⟶ p + H3,d + d,p + t,4.03266
+17,H3 + H2 ⟶ n + He4,d + t,n + He4,17.589
+18,He3 + n ⟶ p + H3,n + He3,p + t,0.7638
+19,He3 + H2 ⟶ p + He4,d + He3,p + He4,18.353
+20,He3 + H3 ⟶ H2 + He4,t + He3,d + He4,14.32
+21,Li7 + p ⟶ He4 + He4,p + Li7,He4 + He4,17.347
+22,Be7 + n ⟶ p + Li7,n + Be7,p + Li7,1.644
+23,Be7 + n ⟶ He4 + He4,n + Be7,He4 + He4,18.9905
+24,H3 + H3 ⟶ n + n + He4,t + t,n + n + He4,11.332
+25,He3 + H3 ⟶ n + p + He4,t + He3,n + p + He4,12.096
+26,He3 + He3 ⟶ p + p + He4,He3 + He3,p + p + He4,12.859
+27,Li7 + H2 ⟶ n + He4 + He4,d + Li7,n + He4 + He4,15.121
+28,Be7 + H2 ⟶ p + He4 + He4,d + Be7,p + He4 + He4,16.766
+29,Li7 + H3 ⟶ n + n + He4 + He4,t + Li7,n + n + He4 + He4,8.86442
+30,Li7 + He3 ⟶ n + p + He4 + He4,He3 + Li7,n + p + He4 + He4,9.62776
+31,Be7 + H3 ⟶ n + p + He4 + He4,t + Be7,n + p + He4 + He4,10.5088
+32,Be7 + He3 ⟶ p + p + He4 + He4,He3 + Be7,p + p + He4 + He4,11.2721
+33,n + p + p ⟶ p + H2,n + p + p,p + d,2.225
