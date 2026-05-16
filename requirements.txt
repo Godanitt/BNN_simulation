@@ -1,8 +1,0 @@
-pynucastro
-scipy
-numpy
-pandas
-matplotlib
-networkx
-numba
-jupyterlab

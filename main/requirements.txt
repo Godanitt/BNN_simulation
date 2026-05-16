@@ -1,0 +1,11 @@
+# Core
+numpy
+pandas
+scipy
+matplotlib
+scienceplots
+pillow
+nbformat
+
+# Nuclear network
+pynucastro
