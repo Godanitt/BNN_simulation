@@ -94,9 +94,9 @@
 // --------------------------
 // Lectura de CSVs generados por los notebooks
 // --------------------------
-// #let assignment-snapshots = load-csv("../main/data/bbn_assignment_snapshots.csv")
-// #let thermo-check = load-csv("../main/data/bbn_thermo_snapshot_check.csv")
-// #let thermo-curve = load-csv("../main/data/bbn_thermo_curve_forced.csv")
+#let assignment-snapshots = load-csv("../main/data/bbn_assignment_snapshots.csv")
+#let thermo-check = load-csv("../main/data/bbn_thermo_snapshot_check.csv")
+#let thermo-curve = load-csv("../main/data/bbn_thermo_curve_forced.csv")
 #let nuclei = load-csv("../main/data/bbn_network_nuclei.csv")
 #let rates = load-csv("../main/data/bbn_network_rates.csv")
 #let obs = load-csv("../main/data/observational_abundances.csv")
@@ -194,16 +194,16 @@ Así, el propósito del trabajo es doble. Primero, reproducir de forma transpare
 
 = Condiciones del ejercicio y observables
 
-El enunciado del trabajo fija tres snapshots de nucleosíntesis primordial: $t approx 50$ s con $T_9=1.7$ y $rho=2 dot 10^(-4)$ g cm$""^(-3)$; $t approx 200$ s con $T_9=1$ y $rho=2 dot 10^(-5)$ g cm$""^(-3)$; y $t approx 1000$ s con $T_9=0.4$ y $rho=2 dot 10^(-6)$ g cm$""^(-3)$. Además, pide asumir una razón inicial neutrón-protón de $1/7$ @USCAssignments2026. Los puntos de entrada utilizados por los notebooks se leen directamente desde `../main/data/bbn_assignment_snapshots.csv` // y se resumen en la tabla @tab:assignment-snapshots.
+El enunciado del trabajo fija tres snapshots de nucleosíntesis primordial: $t approx 50$ s con $T_9=1.7$ y $rho=2 dot 10^(-4)$ g cm$""^(-3)$; $t approx 200$ s con $T_9=1$ y $rho=2 dot 10^(-5)$ g cm$""^(-3)$; y $t approx 1000$ s con $T_9=0.4$ y $rho=2 dot 10^(-6)$ g cm$""^(-3)$. Además, pide asumir una razón inicial neutrón-protón de $1/7$ @USCAssignments2026. Los puntos de entrada utilizados por los notebooks se leen directamente desde `../main/data/bbn_assignment_snapshots.csv` y se resumen en la tabla @tab:assignment-snapshots.
 
-// #figure(
-//   csv-table(
-//     assignment-snapshots,
-//     ("label", "t_s", "T9", "rho_g_cm3", "T_K"),
-//     headers: ([snapshot], [$t$ [s]], [$T_9$], [$rho$ [g cm$""^(-3)$]], [$T$ [K]]),
-//   ),
-//   caption: [Snapshots impuestos por el enunciado y usados como puntos de anclaje de la trayectoria termodinámica.],
-// ) <tab:assignment-snapshots>
+#figure(
+  csv-table(
+    assignment-snapshots,
+    ("label", "t_s", "T9", "rho_g_cm3", "T_K"),
+    headers: ([snapshot], [$t$ [s]], [$T_9$], [$rho$ [g cm$""^(-3)$]], [$T$ [K]]),
+  ),
+  caption: [Snapshots impuestos por el enunciado y usados como puntos de anclaje de la trayectoria termodinámica.],
+) <tab:assignment-snapshots>
 
 Para poder comparar las salidas de la red con datos observacionales, se define un conjunto de observables mínimos: D/H, #He3/H, $X(#He4)$ y el canal de masa 7, $((#Li7 + #Be7)/H)$. Los valores usados en las gráficas no se escriben a mano en la memoria, sino que se cargan desde `../main/data/observational_abundances.csv`, mostrado en la tabla @tab:observational-input.
 
@@ -239,32 +239,32 @@ $ n_gamma(T) = (2 zeta(3)) / pi^2 (k_B T / (h c))^3. $
 
 En la práctica, los notebooks construyen una referencia suave de este tipo y aplican una corrección multiplicativa mediante `PchipInterpolator` en escala logarítmica. Así se consigue que la trayectoria pase exactamente por los tres snapshots del enunciado, sin perder una forma global suave. El resultado se guarda en `../main/data/bbn_thermo_curve_forced.csv` y se comprueba en `../main/data/bbn_thermo_snapshot_check.csv`.
 
-// #figure(
-//   csv-table(
-//     thermo-check,
-//     ("label", "t_s", "T9", "T9_model", "rho_g_cm3", "rho_model_g_cm3", "eta10_model"),
-//     headers: ([snapshot], [$t$ [s]], [$T_9$ enunciado], [$T_9$ modelo], [$rho$ enunciado], [$rho$ modelo], [$eta_10$ efectiva]),
-//     small: true,
-//   ),
-//   caption: [Control de la trayectoria termodinámica: la curva forzada reproduce los snapshots del enunciado y proporciona una $eta_10$ efectiva asociada a la densidad bariónica usada.],
-// ) <tab:thermo-check>
+#figure(
+  csv-table(
+    thermo-check,
+    ("label", "t_s", "T9_assignment", "T9_model", "rho_assignment_g_cm3", "rho_model_g_cm3", "eta10_effective"),
+    headers: ([snapshot], [$t$ [s]], [$T_9$ enunciado], [$T_9$ modelo], [$rho$ enunciado], [$rho$ modelo], [$eta_10$ efectiva]),
+    small: true,
+  ),
+  caption: [Control de la trayectoria termodinámica: la curva forzada reproduce los snapshots del enunciado y proporciona una $eta_10$ efectiva asociada a la densidad bariónica usada.],
+) <tab:thermo-check>
 
-// La figura @fig:thermo-t9 compara la curva $T_9(t)$ utilizada con la referencia pura $T_9 prop t^(-1/2)$. La figura @fig:thermo-rho muestra la densidad bariónica forzada frente a la densidad de referencia calculada a partir de $rho_b=m_u eta n_gamma(T)$. Finalmente, @fig:eta-effective muestra la razón barión-fotón efectiva que correspondería a los snapshots impuestos.
+La figura @fig:thermo-t9 compara la curva $T_9(t)$ utilizada con la referencia pura $T_9 prop t^(-1/2)$. La figura @fig:thermo-rho muestra la densidad bariónica forzada frente a la densidad de referencia calculada a partir de $rho_b=m_u eta n_gamma(T)$. Finalmente, @fig:eta-effective muestra la razón barión-fotón efectiva que correspondería a los snapshots impuestos.
 
-// #figure(
-//   image("../main/figures/fig_thermo_T9_forced_radiation.pdf", width: 85%),
-//   caption: [Historia de temperatura usada por la red. La curva pasa por los puntos del enunciado, pero mantiene como referencia la ley radiación-dominada $T_9 proportional t^(-1/2)$.],
-// ) <fig:thermo-t9>
+#figure(
+  image("../main/figures/fig_thermo_T9_forced_radiation.pdf", width: 85%),
+  caption: [Historia de temperatura usada por la red. La curva pasa por los puntos del enunciado, pero mantiene como referencia la ley radiación-dominada $T_9 prop t^(-1/2)$.],
+) <fig:thermo-t9>
 
-// #figure(
-//   image("../main/figures/fig_thermo_rho_forced_eta.pdf", width: 85%),
-//   caption: [Densidad bariónica impuesta. La referencia se calcula mediante $rho_b=m_u eta n_gamma(T)$ usando una $eta_10$ cosmológica de orden $6$, mientras que la curva final se fuerza a los snapshots del enunciado.],
-// ) <fig:thermo-rho>
+#figure(
+  image("../main/figures/fig_thermo_rho_forced_eta.pdf", width: 85%),
+  caption: [Densidad bariónica impuesta. La referencia se calcula mediante $rho_b=m_u eta n_gamma(T)$ usando una $eta_10$ cosmológica de orden $6$, mientras que la curva final se fuerza a los snapshots del enunciado.],
+) <fig:thermo-rho>
 
-// #figure(
-//   image("../main/figures/fig_eta10_effective_forced.pdf", width: 85%),
-//   caption: [Razón barión-fotón efectiva asociada a la trayectoria forzada. No se interpreta como una medida de $eta$, sino como diagnóstico de consistencia entre los snapshots del enunciado y la referencia cosmológica usada.],
-// ) <fig:eta-effective>
+#figure(
+  image("../main/figures/fig_eta10_effective_forced.pdf", width: 85%),
+  caption: [Razón barión-fotón efectiva asociada a la trayectoria forzada. No se interpreta como una medida de $eta$, sino como diagnóstico de consistencia entre los snapshots del enunciado y la referencia cosmológica usada.],
+) <fig:eta-effective>
 
 == Comentario sobre $eta$
 
@@ -472,6 +472,15 @@ También se exportan GIFs con la evolución temporal de las abundancias:
 ../main/gifs/gif_abundances_t0_10s.gif
 ../main/gifs/gif_abundances_t0_50s.gif
 ```
+
+// #figure(
+//   image("../main/gifs/gif_abundances_t0_10s.gif", width: 80%),
+//   caption: [Animación de la simulación.]
+// )
+// #figure(
+//   image("../main/gifs/gif_abundances_t0_50s.gif", width: 80%),
+//   caption: [Animación de la simulación.]
+// )
 
 Estos GIFs se consideran material suplementario, ya que el PDF final no conserva animación. Para la memoria impresa, las figuras @fig:heatmap-10 y @fig:heatmap-50 contienen la misma información de forma estática.
 

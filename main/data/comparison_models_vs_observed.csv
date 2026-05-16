@@ -1,13 +1,13 @@
 observable,kind,value,sigma,source
-D/H,t0_50s,4.979074004147803e-09,,pynucastro model
-D/H,t0_10s,4.013645458318058e-19,,pynucastro model
+D/H,t0_50s,4.968346281606112e-09,,pynucastro model
+D/H,t0_10s,3.969620237988913e-19,,pynucastro model
 D/H,observed,2.527e-05,3e-07,Cooke2018
-Yp_He4,t0_50s,0.2498882016544456,,pynucastro model
-Yp_He4,t0_10s,0.2499794669540906,,pynucastro model
+Yp_He4,t0_50s,0.2498880164511417,,pynucastro model
+Yp_He4,t0_10s,0.3333118660606366,,pynucastro model
 Yp_He4,observed,0.2462,0.0022,Aver2021
-He3/H,t0_50s,5.2093990572700704e-06,,pynucastro model
-He3/H,t0_10s,4.542966175052648e-06,,pynucastro model
+He3/H,t0_50s,5.262908134665564e-06,,pynucastro model
+He3/H,t0_10s,4.259518918313919e-06,,pynucastro model
 He3/H,observed,1.1e-05,2e-06,Steigman2010
-Li7/H,t0_50s,9.013511410746741e-08,,pynucastro model
-Li7/H,t0_10s,1.619445473391946e-06,,pynucastro model
+Li7/H,t0_50s,9.469180021625893e-08,,pynucastro model
+Li7/H,t0_10s,1.8584778492234287e-06,,pynucastro model
 Li7/H,observed,1.6e-10,3e-11,FieldsLithiumReview
